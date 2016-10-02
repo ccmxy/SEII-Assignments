@@ -1,0 +1,69 @@
+
+See all the tests I made at:
+
+ https://github.com/OSU-CS362-F16/362Exercises/blob/master/templates/hw2/src/test/java/edu/osu/cs362/WarmupTest.java
+
+
+
+Test 1: testLastZero
+
+1) Over what inputs, if any, does this function throw an Exception?
+
+If you enter an incorrect variable type, for example:
+  int result = WarmUp.findInteger("LALALA", 100);
+that will cause an exception to be thrown, because findInteger is supposed to take an int array.
+
+Aside from sending in bad data types, the test will (correctly) fail in the case that an assertion is made
+that the result will equal a number that is not the index of the last 0 of the sent-in array (if a 0 exists).
+
+For example,
+  int result = WarmUp.lastZero(new int[] { 1, 0, 5 });
+  assertEquals(result, 2);
+should cause a failure because 0 is at position 1, not 2.
+
+2) Over what inputs, if any, does this function provide incorrect output?
+  When 0 is the first input in the list, the output is incorrect.
+  For example, this is supposed to pass:
+
+    int result3 = WarmUp.lastZero(new int[] { 0, 3, 4, 3, 5 });
+    assertEquals(result3, 0);
+
+  but it fails, getting a result of -1 instead 0, because the loop in lastZero loop only runs while i > 0;
+
+Test 2: testLast
+1) Over what inputs, if any, does this function throw an Exception?
+  An exception will be thrown if you put in invalid data, like anything but an int array.
+  Aside from that, most of the values input for testing will
+  cause a test failure. See examples below.
+
+
+2) Over what inputs, if any, does this function provide incorrect output?
+
+  Almost all of them. This is because the for-loop in the function counts down (i--)
+  but starts at 0 and is set to run while i < arr.length.
+
+  Here is a test statement that should pass if the function worked properly but instead fails:
+
+      int result = WarmUp.last(new int[] { 1, 0, 4, 0, 5 }, 4);
+      assertEquals(result, 2);
+
+Test 3: testPositive
+1) Over what inputs, if any, does this function throw an Exception?
+
+  I haven't found any valid inputs that cause this to throw an exception, or a
+  false failure either, except if you account for the fact that 0 is technically
+  neither positive nor negative. Invalid input, like sending in the String "jumanji"
+  would cause an exception to be thrown.
+
+2) Over what inputs, if any, does this function provide incorrect output?
+  N/A
+
+Test 4: testOddOrPos
+1) Over what inputs, if any, does this function throw an Exception?
+
+  Like with the test above, I couldn't find any.
+
+
+2) Over what inputs, if any, does this function provide incorrect output?
+
+    N/A
