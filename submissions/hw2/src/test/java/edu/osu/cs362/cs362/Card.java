@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Card {
-      
+
     public final Face face;
     public final Suit suit;
     private boolean visible;
@@ -38,7 +38,7 @@ public class Card {
     public boolean equals(Object o){
 	if(!(o instanceof Card)) return false;
 	if(this == o) return true;
-	    
+
 	return this.toString().equals(o.toString());
     }
 
@@ -46,7 +46,7 @@ public class Card {
 
     public String toString(){
 	return this.face.name() + this.suit.name();
-	  
+
     }
 
     private static final List<Card> protoDeck = new ArrayList<Card>();
@@ -63,9 +63,9 @@ public class Card {
     public boolean isVisible() {
 	return this.visible;
     }
-    
+
     public void setVisible(boolean b){
 	this.visible = b;
     }
-    
+
 }
