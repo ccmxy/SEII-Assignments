@@ -24,7 +24,8 @@ public class CardTest  {
 
         }
 
-        /*test 'equals' method of Card class on two cards that should be equal*/
+        /*test 'equals' method override of Card class
+        on two cards that should be equal*/
         @Test
         public void equalsTestForEqualCards() {
           Card testCard1 = new Card(Card.Face.THREE, Card.Suit.DIAMOND);
@@ -32,7 +33,7 @@ public class CardTest  {
           assertTrue(testCard1.equals(testCard2));
         }
 
-        /*test 'equals' method of Card class on two cards that should
+        /*test 'equals' override of Card class on two cards that should
         NOT be equal, because they have different suits*/
         @Test
         public void equalsTestForCardsWithDifferentSuits() {
@@ -41,12 +42,23 @@ public class CardTest  {
           assertFalse(testCard1.equals(testCard2));
         }
 
-        /*test 'equals' method of Card class on two cards that should
+        /*test 'equals' override of Card class on two cards that should
         NOT be equal, because they have different faces*/
         @Test
         public void equalsTestForCardsWithDifferentFaces() {
           Card testCard1 = new Card(Card.Face.THREE, Card.Suit.CLUB);
           Card testCard2 = new Card(Card.Face.FOUR, Card.Suit.CLUB);
+          assertFalse(testCard1.equals(testCard2));
+        }
+
+
+        /*test 'equals' override of Card class on two cards that should
+        NOT be equal, because they have different faces, EVEN THOUGH
+        the faces have the same value*/
+        @Test
+        public void equalsTestForCardsWithDifferentFacesButSameValue() {
+          Card testCard1 = new Card(Card.Face.KING, Card.Suit.CLUB);
+          Card testCard2 = new Card(Card.Face.QUEEN, Card.Suit.CLUB);
           assertFalse(testCard1.equals(testCard2));
         }
 
@@ -92,9 +104,6 @@ public class CardTest  {
           testCard1.setVisible(true);
           assertTrue(testCard1.isVisible());
         }
-
-
-
 
 
 }

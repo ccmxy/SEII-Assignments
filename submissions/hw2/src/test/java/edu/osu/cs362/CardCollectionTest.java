@@ -22,7 +22,7 @@ public class CardCollectionTest {
 
 
  @Test
- public void addSingleCardTest() {
+ public void addSingleCardOnceTest() {
   Card testCard1 = new Card(Card.Face.TWO, Card.Suit.HEART);
 
   CardCollection testCollection = new CardCollection(testCard1);
@@ -37,6 +37,18 @@ public class CardCollectionTest {
  }
 
 
+ @Test
+ public void addSingleCardMultipleTimesTest() {
+  Card testCard1 = new Card(Card.Face.TWO, Card.Suit.HEART);
+  CardCollection testCollection = new CardCollection(testCard1);
+  testCollection.add(new Card(Card.Face.THREE, Card.Suit.DIAMOND));
+  testCollection.add(new Card(Card.Face.FOUR, Card.Suit.CLUB));
+  List < Card > cardsList = testCollection.getCards();
+  assertEquals(cardsList.size(), 3);
+ }
+
+
+/*Test to ensure that you can add a list of cards to a collection*/
  @Test
  public void addListOfCardsTest() {
 
@@ -55,10 +67,23 @@ public class CardCollectionTest {
   /*Add new list of cards to testCollection.cards*/
   testCollection.add(newCardList);
 
-  /*Test that list was successfully added*/
+  /*Test that list was successfully added, with proper values*/
   testCollectionCardsList = testCollection.getCards();
   assertEquals(testCollectionCardsList.size(), 3);
+  assertEquals(testCollectionCardsList.get(0).face.getValue(), 2);
+  assertEquals(testCollectionCardsList.get(1).face.getValue(), 3);
+  assertEquals(testCollectionCardsList.get(2).face.getValue(), 4);
+
  }
+
+ /*Test to ensure that the new deck method creats protoDeck of
+ 52 cards*/
+ @Test
+ public void newDeckTest() {
+    ArrayList<Card> cards = Card.newDeck();
+   assertEquals(cards.size(), 52);
+ }
+
 
  /*Test to ensure that the discardCard lowers the size of the CardCollection
  it is removed from by 1.*/
@@ -67,8 +92,8 @@ public class CardCollectionTest {
 
   CardCollection testCollection = new CardCollection(new Card(Card.Face.THREE, Card.Suit.CLUB),
    new Card(Card.Face.FIVE, Card.Suit.DIAMOND));
-  /*Make sure testCollection cards list is at size 2:*/
   List < Card > testCollectionCardsList = testCollection.getCards();
+  /*Make sure testCollection cards list is at size 2:*/
   assertEquals(testCollectionCardsList.size(), 2);
 
   /*Remove card at position 1: */
@@ -78,7 +103,6 @@ public class CardCollectionTest {
   testCollectionCardsList = testCollection.getCards();
   assertEquals(testCollectionCardsList.size(), 1);
  }
-
 
  /*Test to ensure that when discardCard is
  used on position 0, the card that had been put at position 1
@@ -102,16 +126,36 @@ public class CardCollectionTest {
   assertEquals(testCollectionCardsList.get(0).face.getValue(), 5);
  }
 
- /*Test that discardCard  function returns the correct card*/
+
+ /*Test that discardCard removes cards
+ from the proper position when there are multiple of the same card*/
  @Test
- public void discardCardReturnsCorrectCardTest() {
+ public void discardCardReturnsCorrectFaceAndSuitTest() {
 
   CardCollection testCollection = new CardCollection(new Card(Card.Face.THREE, Card.Suit.CLUB),
    new Card(Card.Face.FIVE, Card.Suit.DIAMOND));
 
   assertEquals(testCollection.discardCard(0), new Card(Card.Face.THREE, Card.Suit.CLUB));
+ }
+
+ /*Test that discardCard function returns the correct card*/
+ @Test
+ public void discardCardNotRemovingCopyOfCardTest() {
+
+  CardCollection testCollection = new CardCollection(new Card(Card.Face.THREE, Card.Suit.CLUB),
+   new Card(Card.Face.FIVE, Card.Suit.DIAMOND), new Card(Card.Face.THREE, Card.Suit.CLUB));
+   //Now the deck looks like, {3 of Clubs, 5 of Diamonds, 3 of Clubs}
+
+   //Removing the last 3 of Clubs (card 3), leaving first 3 of Clubs at position 0
+   testCollection.discardCard(2);
+
+   List < Card > testCollectionCardsList = testCollection.getCards();
+
+   //The first 3 of clubs (card 1) should still be at position 0.
+  assertEquals(testCollectionCardsList.get(0), new Card(Card.Face.THREE, Card.Suit.CLUB));
+  //Assertion fails! The card at position 0 is the 5 of diamonds, because
+  //the FIRST 3 of clubs was removed! Bug discovered!!
 
  }
 
-
-}
+}//end of class

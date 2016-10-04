@@ -1,59 +1,74 @@
 
-See all the tests I made at:
-
- https://github.com/OSU-CS362-F16/362Exercises/blob/master/templates/hw2/src/test/java/edu/osu/cs362/WarmupTest.java
-
-Test 1: testLastZero
+Function 1: testLastZero
 
 1) Over what inputs, if any, does this function throw an Exception?
 
-I did not find any inputs that caused an exception to be thrown. 
+    Null causes the exception,
 
+    'java.lang.NullPointerException'
 
 2) Over what inputs, if any, does this function provide incorrect output?
-  When 0 is the first input in the list, the output is incorrect.
-  For example, this is supposed to pass:
+    When 0 is the first input in the list, the output is incorrect.
+    For example, this is supposed to pass:
 
-    int result4 = WarmUp.lastZero(new int[] { 0, 3, 4, 3, 5 });
-    assertEquals(result4, 0);
+      int result4 = WarmUp.lastZero(new int[] { 0, 3, 4, 3, 5 });
+      assertEquals(result4, 0);
 
-  but instead it fails, getting a result of -1 instead 0, because the loop in lastZero loop only runs while i > 0.
+    but instead it fails, getting a result of -1 instead 0,
+    because the loop in lastZero loop only runs while i > 0.
 
-Test 2: testLast
+Function 2: last
 1) Over what inputs, if any, does this function throw an Exception?
 
-Pretty much all valid inputs cause this to throw this exception:
+    Pretty much all valid inputs cause this to throw this exception:
 
-java.lang.ArrayIndexOutOfBoundsException: -1
+      `java.lang.ArrayIndexOutOfBoundsException: -1`
 
 
 2) Over what inputs, if any, does this function provide incorrect output?
 
-The tests can’t even run because of the index out-of-bounds issue.
-This is because the for-loop in the function counts down (i--)
- but starts at 0 and is set to run while i < arr.length.
+    The tests can’t even run because of the index out-of-bounds issue.
+    This is because the for-loop in the function counts down (i--)
+    but starts at 0 and is set to run while i < arr.length.
 
-  Here is a test statement that should pass if the function worked properly:
+    Here is a test statement that should pass if the function worked properly:
 
-      int result = WarmUp.last(new int[] { 1, 0, 4, 0, 5 }, 4);
-      assertEquals(result, 2);
+          int result = WarmUp.last(new int[] { 1, 0, 4, 0, 5 }, 4);
+          assertEquals(result, 2);
 
-Test 3: testPositive
+Function 3: positive
 1) Over what inputs, if any, does this function throw an Exception?
-
-  I haven't found any valid inputs that cause this to throw an exception.
- 
-
-2) Over what inputs, if any, does this function provide incorrect output?
-Zero is technically neither positive nor negative, which this function does not account for. So the answer is anything with 0.
-  
-
-Test 4: testOddOrPos
-1) Over what inputs, if any, does this function throw an Exception?
-
-  Like with the test above, I couldn't find any.
+    Sending in "null" causes the error
+      `java.lang.NullPointerException`
 
 
 2) Over what inputs, if any, does this function provide incorrect output?
+    I could not find any.
 
-    N/A
+
+Function 4: oddOrPos
+    1) Over what inputs, if any, does this function throw an Exception?
+      Sending in either an int array that points to null, or just null,
+      causes the error
+        java.lang.NullPointerException.
+
+      Examples:
+      int[] myIntArray = new int[3];
+      myIntArray = null;
+      WarmUp.oddOrPos(myIntArray);
+
+        or
+
+      WarmUp.oddOrPos(null);
+
+      will both cause the exception.
+
+
+2) Over what inputs, if any, does this function provide incorrect output?
+
+    Any input with negative values. This is because the function
+    determines if a number is odd with % 2 == 1. In Java, the
+    % operator gets the actual remainder, not the absolute value
+    of the remainder, so odd negatives will have a % 2 value of
+    -1. This could be fixed by adding `|| arr[i] % 2 == -1` to
+    the if statement in the function.
