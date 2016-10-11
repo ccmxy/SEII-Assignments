@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="23" failures="4" name="edu.osu.cs362.WarmupTest" time="0.006" errors="7" skipped="0">
+<testsuite tests="23" failures="3" name="edu.osu.cs362.WarmupTest" time="0.006" errors="6" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib"/>
     <property name="java.vm.version" value="25.65-b01"/>
     <property name="gopherProxySet" value="false"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/colleenminor/desktop/Courses/CS362/assignments-ccmxy/submissions/hw2"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/colleenminor/desktop/Courses/SoftwareEngineeringII/assignments-ccmxy/submissions/hw3"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/colleenminor/Desktop/Courses/CS362/assignments-ccmxy/submissions/hw2"/>
+    <property name="user.dir" value="/Users/colleenminor/Desktop/Courses/SoftwareEngineeringII/assignments-ccmxy/submissions/hw3"/>
     <property name="java.runtime.version" value="1.8.0_65-b17"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/endorsed"/>
@@ -26,7 +26,7 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/colleenminor/desktop/Courses/CS362/assignments-ccmxy/bin/apache-maven-3.3.9/bin/m2.conf"/>
+    <property name="classworlds.conf" value="/Users/colleenminor/desktop/Courses/SoftwareEngineeringII/assignments-ccmxy/bin/apache-maven-3.3.9/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/colleenminor/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -40,7 +40,7 @@
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="user.name" value="colleenminor"/>
-    <property name="java.class.path" value="/Users/colleenminor/desktop/Courses/CS362/assignments-ccmxy/bin/apache-maven-3.3.9/boot/plexus-classworlds-2.5.2.jar"/>
+    <property name="java.class.path" value="/Users/colleenminor/desktop/Courses/SoftwareEngineeringII/assignments-ccmxy/bin/apache-maven-3.3.9/boot/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre"/>
@@ -53,7 +53,7 @@
     <property name="java.ext.dirs" value="/Users/colleenminor/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
     <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="/Users/colleenminor/desktop/Courses/CS362/assignments-ccmxy/bin/apache-maven-3.3.9"/>
+    <property name="maven.home" value="/Users/colleenminor/desktop/Courses/SoftwareEngineeringII/assignments-ccmxy/bin/apache-maven-3.3.9"/>
     <property name="file.separator" value="/"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -62,88 +62,16 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="edu.osu.cs362.WarmupTest" name="testLastZero_nullValue" time="0">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at edu.osu.cs362.WarmUp.lastZero(WarmUp.java:25)
-	at edu.osu.cs362.WarmupTest.testLastZero_nullValue(WarmupTest.java:62)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-</error>
-  </testcase>
+  <testcase classname="edu.osu.cs362.WarmupTest" name="testLastZero_nullValue" time="0"/>
   <testcase classname="edu.osu.cs362.WarmupTest" name="testLastZero_emptyArray" time="0"/>
-  <testcase classname="edu.osu.cs362.WarmupTest" name="testLastZero_zeroAtPositionZero" time="0">
-    <failure message="expected:&lt;-1&gt; but was:&lt;0&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;-1&gt; but was:&lt;0&gt;
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.junit.Assert.failNotEquals(Assert.java:743)
-	at org.junit.Assert.assertEquals(Assert.java:118)
-	at org.junit.Assert.assertEquals(Assert.java:555)
-	at org.junit.Assert.assertEquals(Assert.java:542)
-	at edu.osu.cs362.WarmupTest.testLastZero_zeroAtPositionZero(WarmupTest.java:118)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-</failure>
-  </testcase>
+  <testcase classname="edu.osu.cs362.WarmupTest" name="testLastZero_zeroAtPositionZero" time="0"/>
   <testcase classname="edu.osu.cs362.WarmupTest" name="testPositive_mixedDataWithZero" time="0"/>
   <testcase classname="edu.osu.cs362.WarmupTest" name="testLastZero_multipleZeros" time="0"/>
   <testcase classname="edu.osu.cs362.WarmupTest" name="testPositive_emptyArray" time="0"/>
   <testcase classname="edu.osu.cs362.WarmupTest" name="testPositive_onlyPositives" time="0"/>
   <testcase classname="edu.osu.cs362.WarmupTest" name="testLast_valToFindInArrayTwice" time="0.001">
     <error message="-1" type="java.lang.ArrayIndexOutOfBoundsException">java.lang.ArrayIndexOutOfBoundsException: -1
-	at edu.osu.cs362.WarmUp.last(WarmUp.java:43)
+	at edu.osu.cs362.WarmUp.last(WarmUp.java:49)
 	at edu.osu.cs362.WarmupTest.testLast_valToFindInArrayTwice(WarmupTest.java:177)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -180,7 +108,7 @@
   <testcase classname="edu.osu.cs362.WarmupTest" name="testPositive_mixedData" time="0"/>
   <testcase classname="edu.osu.cs362.WarmupTest" name="testPositive_nullValue" time="0.001">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at edu.osu.cs362.WarmUp.positive(WarmUp.java:55)
+	at edu.osu.cs362.WarmUp.positive(WarmUp.java:61)
 	at edu.osu.cs362.WarmupTest.testPositive_nullValue(WarmupTest.java:216)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -213,9 +141,9 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
   </testcase>
-  <testcase classname="edu.osu.cs362.WarmupTest" name="testLast_valToFindInArrayOnce" time="0.001">
+  <testcase classname="edu.osu.cs362.WarmupTest" name="testLast_valToFindInArrayOnce" time="0">
     <error message="-1" type="java.lang.ArrayIndexOutOfBoundsException">java.lang.ArrayIndexOutOfBoundsException: -1
-	at edu.osu.cs362.WarmUp.last(WarmUp.java:43)
+	at edu.osu.cs362.WarmUp.last(WarmUp.java:49)
 	at edu.osu.cs362.WarmupTest.testLast_valToFindInArrayOnce(WarmupTest.java:165)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -251,7 +179,7 @@
   <testcase classname="edu.osu.cs362.WarmupTest" name="testLast_nullValue" time="0"/>
   <testcase classname="edu.osu.cs362.WarmupTest" name="testPositive_onlyNegatives" time="0"/>
   <testcase classname="edu.osu.cs362.WarmupTest" name="testLastZero_oneZero" time="0"/>
-  <testcase classname="edu.osu.cs362.WarmupTest" name="testFindIntegerExample" time="0">
+  <testcase classname="edu.osu.cs362.WarmupTest" name="testFindIntegerExample" time="0.001">
     <failure message="expected:&lt;-1&gt; but was:&lt;0&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;-1&gt; but was:&lt;0&gt;
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:743)
@@ -290,7 +218,7 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </failure>
   </testcase>
-  <testcase classname="edu.osu.cs362.WarmupTest" name="testOddOrPos_oddNegativeNumbers" time="0.002">
+  <testcase classname="edu.osu.cs362.WarmupTest" name="testOddOrPos_oddNegativeNumbers" time="0">
     <failure message="expected:&lt;0&gt; but was:&lt;3&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;0&gt; but was:&lt;3&gt;
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:743)
@@ -329,9 +257,9 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </failure>
   </testcase>
-  <testcase classname="edu.osu.cs362.WarmupTest" name="testLast_toFindNotInArray" time="0">
+  <testcase classname="edu.osu.cs362.WarmupTest" name="testLast_toFindNotInArray" time="0.001">
     <error message="-1" type="java.lang.ArrayIndexOutOfBoundsException">java.lang.ArrayIndexOutOfBoundsException: -1
-	at edu.osu.cs362.WarmUp.last(WarmUp.java:43)
+	at edu.osu.cs362.WarmUp.last(WarmUp.java:49)
 	at edu.osu.cs362.WarmupTest.testLast_toFindNotInArray(WarmupTest.java:190)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -407,7 +335,7 @@
   <testcase classname="edu.osu.cs362.WarmupTest" name="testOddOrPos_mixedPositiveNumbers" time="0"/>
   <testcase classname="edu.osu.cs362.WarmupTest" name="testOddOrPos_nullValue" time="0">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at edu.osu.cs362.WarmUp.oddOrPos(WarmUp.java:72)
+	at edu.osu.cs362.WarmUp.oddOrPos(WarmUp.java:78)
 	at edu.osu.cs362.WarmupTest.testOddOrPos_nullValue(WarmupTest.java:360)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -440,9 +368,9 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
   </testcase>
-  <testcase classname="edu.osu.cs362.WarmupTest" name="testOddOrPos_nullIntArray" time="0">
+  <testcase classname="edu.osu.cs362.WarmupTest" name="testOddOrPos_nullIntArray" time="0.001">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at edu.osu.cs362.WarmUp.oddOrPos(WarmUp.java:72)
+	at edu.osu.cs362.WarmUp.oddOrPos(WarmUp.java:78)
 	at edu.osu.cs362.WarmupTest.testOddOrPos_nullIntArray(WarmupTest.java:350)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
