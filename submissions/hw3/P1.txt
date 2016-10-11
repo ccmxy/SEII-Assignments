@@ -358,3 +358,10 @@ public void testOddOrPos_evenNegativeNumbers() {
  });
  assertEquals(result, 0);
 }
+
+3) Describe the advantage of having input disjoint test cases
+
+This reduces the total number of test that need to be done.
+As noted in the lectures, the range of possible input values
+is huge, so by coming up with categories to test we can uncover
+errors.
