@@ -1,130 +1,92 @@
-# Assignment 2
+
+# Assignment 3: Input Domain Partitioning
 
 ## Preliminaries
 
-* The only supported platform for this and all future assignments is EECS's `flip` server. You are welcome to use your own environment, but we can only provide support for issues on `flip`
-* You'll first need to untar Maven 3.3.9 from the `bin` directory in the root of the repository if you haven't done so already. 
+* Completion of this assignment is not required, but it may help you on HW2
+* You may turn in the written sections of this assignment for extra credit
+* You'll be making some improvements on your HW2 code this week.  Copy
+the entire contents `submissions/hw2` to `submissions/hw3`.  `git add`
+the copied files and then commit to your local repository
+
+## Part I
+
+Re-evaluate your test cases for `lastZero `and answer the following questions in `submissions/hw3/P1.txt`
+
+1) Correct the bug in `lastZero` within `Warmup.java`
+
+2) Is it possible to organize each of your test case functions into disjoint partitions? If so, describe 
+your partitioning scheme, making note of which test functions correspond to which partition.  If not, come up with a new disjoint partitioning scheme, describe it and modify your `WarmupTest.java` tests to reflect your new scheme.  
+
+3) Describe the advantage of having input disjoint test cases?
+
+
+
+## Part II
+
+Consider the `CardCollection.discardCard` function. The function should remove the element at index `handPos` and leave the relative order of all other cards the same. When working with stateful objects, the behavior of a function is dependent on not only the function interface, but the state of the object itself. Consider the following partitioning 
+
+
+`Card.newDeck()` returns a new 52 card deck, below it indicates a CardCollection with a full deck. `Card.newDeck()*2` indicates a CardCollection containing two full decks
+
+| Partition | CardCollection.cards | handPos |  
+|---|---|---|
+|  b<sub>0</sub>  |  empty | 0  |
+|  b<sub>1</sub>  | Card.newDeck() | 0  |
+|  b<sub>2</sub> | Card.newDeck()  | cards.size()-1  |
+| b<sub>3</sub>  |  Card.newDeck() | 0&lt;x&lt;cards.size()-1  |
+|  b<sub>4</sub>  | Card.newDeck()*2  |  0 | 
+|  b<sub>5</sub> | Card.newDeck()*2  | cards.size()-1  | 
+| b<sub>6</sub>  | Card.newDeck()*2  | 0&lt;x&lt;cards.size()-1 | 
+
+Answer the following questions in `submissions/hw3/P2.txt`
+
+1
+    a)  Why don't we need to consider a partition where CardCollection.cards is `null`? 
+
+    b) Do we consider every possible state of `CardCollection.cards` in at least one partition?
+
+    c) Do we consider every possible value of `handPos` in at least one partition?
+
+    d) Is this partitioning complete? In other words, does the partitioning above consider every possible combination of CardCollection.cards and handPos?  
+
+2)  Suppose we have a CardCollection  `cc` consisting of 2, 52-card decks (`Card.newDeck()*2`) and we produce a test like the one below
 
 ~~~
-tar -xvf apache-maven-3.3.9.tar
+    
+    public void testCardRemoveFromMiddle(int i){
+        CardCollection c = new CardCollection();
+        ArrayList<Card> comparison = Card.newDeck()
+        c.add(Card.newDeck());
+        c.add(Card.newDeck());
+        
+        int i = 1;
+        c.discardCard(i);  // remove last card
+        assertEquals(comparison.get(0),c.getCards().get(0)); // first element shouldn't change
+    }
+  
+    @Test public void testCardRemoveFromMiddle(){
+       testCardRemoveFromMiddle(1);
+       testCardRemoveFromMiddle(2);
+    }
 ~~~
 
-You can untar into the `bin` directory or a directory of your chosing. We will be using the Maven `mvn` command frequently and we highly recommend you add the `<untarred maven directory>/bin`  to your [PATH](https://kb.iu.edu/d/acar) variable.  If you don't, you'll need to substitute `mvn` with `<untarred maven directory>/bin/mvn` 
+that succeeds on ` testCardRemoveFromMiddle(1)` but fails on `testCardRemoveFromMiddle(2)` - what does this say about partition  b<sub>6</sub>?
 
-* Get the latest files from the instructor's repository by running (from your repository directory)
+3)  The current implementation (given in HW2 and unchanged here) fails for at least one of these partitions. Find at least one partition where this fails and identify the bug if you haven't already.  It is recommended you implement tests for each, but you are not required to submit them.
 
-**WARNING: Do not use the `bin/sync` script (yet). If you tried running the `bin/sync` script prior to this exercise, you'll need to do `git remote remove upstream` first**
-~~~
-    git remote add upstream "https://github.com/OSU-CS362-F16/362Exercises"
-    git checkout master              # make sure we're on the master branch
-    git fetch upstream             # pull any information about changes in upstream
-    git merge upstream/master -m "Sync" # merge new files
-~~~
+## What to submit
 
-You should now have new files in your `templates/hw2` directory
+Did you `git add`
 
+* All of the files you copied from `submissions/hw2` to submissions/hw3`
+* Modified `WarmupTest.java`
+* Written answers from part 1) in `submissions/hw3/P1.txt`
+* Written answers from part 2) in `submissions/hw3/P2.txt`
 
-
-* Copy the contents `templates/hw2` to `submissions/hw2`.  `git add` the copied files and then commit to your local repository
-
-## Part 1) Warm up
-
-First, `cd` into the `submissions/hw2` directory and make sure you can run Maven and compile using
-
-`mvn compile test`
-
-The tail of your output should look like this
-
-~~~~
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
-Running edu.osu.cs362.WarmupTest
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.05 sec
-
-Results :
-
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
-
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 5.385 s
-[INFO] Finished at: 2016-09-26T09:44:57-07:00
-[INFO] Final Memory: 19M/1109M
-[INFO] ------------------------------------------------------------------------
-~~~
-
-For this assignment, this is the only command you should need to know.  This Maven task will compile your code then run all the tests and display the output.  If you have compilation errors, the tests will not be run and the output of the Java compiler will be shown.
-
-
-The file `submissions/hw2/src/main/java/edu/osu/cs362/WarmUp.java` contains 4 functions for which you are to develop unit tests. We will be using a tool called JUnit which is a unit test framework for Java.  The file `submissions/hw2/src/test/java/edu/osu/cs362/WarmupTest.java` is provided to you with an example unit test
-
-Create a new method called `@Test public void testX(){...}` where `X` is the name of each of the four functions in the Warmup class.  Create a set of tests for each of these four functions and answer the following questions for each and submit the answers in `submissions/hw2/P1.txt`
-
-* Over what inputs, if any, does this function throw an Exception?
-* Over what inputs, if any, does this function provide incorrect output?
-
-## Part 2) The blackjack game
-
-You just joined a team that is working on an online Blackjack
-server. The last developer left a note in a source control commit that there was a serious bug that
-was affecting a previous version of certain card games. During the
-execution of a game, it appeared as if certain cards changed position in the deck unexpectedly and that they suspected the error was somewhere in either
-the Card or CardCollection classes.
-
-Your task is to examine the two classes a) find the issue and b)
-create a suite of units test to find existing issues and prevent
-future ones.
-
-### Part 2a) Writing a test suite
-
-Create two new files in your submissions/hw2 directory:
-
-* submissions/hw2/src/test/java/edu/osu/cs362/CardCollectionTest.java 
-* submissions/hw2/src/test/java/edu/osu/cs362/CardTest.java 
-
-To write new test suites, you'll need to mimic the WarmupTest.java
-class. In particular: 
-
- - Each test case method must begin with @Test
- - All classes (.java files) must end in ...Test.java  (which you've already done above if you named your files as described)
- - All class names (`public class CardCollectionTest{...}`)  must reside in a .java file of the same name (`CardCollectionTest.java`)
- 
-Maven automatically runs the tests from classes in folder `src/test` fulfilling these two requirements.
-
-It is good practice to use a new method for each piece of
-functionality you might test.  Similar test cases (e.g., testing a
-class constructor with differnet parameters) can be grouped in the
-same method
-
-- Write a suite of JUnit tests to test the Card class
-- Write a suite of JUnit tests for each method of the CardCollection class **excluding the `permute` function**. 
-
-## Part 2b) The bug
-
-If you were able to find an issue like the one described above, answer the following in `submissions/hw2/P2.txt`
-
-  - What is the bug? Concisely describe it and provide a test case that reproduces it. Include a JUnit case in your writeup that replicates the error.  Be clear as to what the expected and actual outputs look like 
-  - Would this error surface when the class was used for the following:
-   - ...a deck where cards are always drawn from the top?
-   - ...a hand where the player is required to keep their cards in order?
-   - ...a deck that is shuffled by removing cards from a random place in the deck and adding them back via method `add`?
-
-If you were unable describe your approach to developing your test suite and justify why the class is correct for the cases above
-
-## Submission checklist
-
-Did you `git add` ...
-
-* All test suite files from part 1)?
-* Written answers from part 1) in `submissions/hw2/P1.txt`?
-* All test suite files from part 2a) ?
-* Written answers from part 2b) in `submissions/hw2/P2.txt`?
-
-Be sure to `git commit` and `git push origin master`
 
 ## How to submit
 
-When you've done the above, create a new branch of your repository called `hw2`. `submissions/hw2` in branch `hw2` should contain all files from `templates/hw2` in addition to the files you added.   This branch must be created and pushed to Github before the due date to
+Create a new branch of your repository called `hw3` containing your
+final submission.  This branch must be created before the due date to
 receive credit.
