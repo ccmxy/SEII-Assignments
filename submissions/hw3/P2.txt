@@ -1,0 +1,49 @@
+1)
+  a) Why don't we need to consider a partition where CardCollection.cards is null?
+
+The unit tests we are looking at are being done on the function discardCard, a
+function which is independent of the state of the deck, and which "null" is not
+a valid input for. Instead, if we want to make sure that a sent-in deck is not null
+while we test this function, we should add a "check if method parameter is null"
+assertion in the test.
+
+b) Do we consider every possible state of CardCollection.cards in at least one partition?
+
+No.
+
+c) Do we consider every possible value of handPos in at least one partition?
+
+No.
+
+d) Is this partitioning complete? In other words, does the partitioning above consider
+every possible combination of CardCollection.cards and handPos?
+
+No. The advantage having input disjoint tests is that it reduces the
+total number of test that need to be done. As noted in the lectures,
+the range of possible input values is huge, so by coming up with categories
+to test we can uncover errors.
+
+
+2) The current implementation (given in HW2 and unchanged here) fails
+for at least one of these partitions. Find at least one partition
+where this fails and identify the bug if you haven't already. It is
+recommended you implement tests for each, but you are not required
+to submit them.
+
+This fails for partition b5, (Card.newDeck()*2	--- cards.size()-1)
+and sometimes for b6 (Card.newDeck()*2 ---	0<x<cards.size()-1).
+
+The bug is caused by a combination of the equals operator in the Card class
+being overriden to find any two cards with the same face and suit to be equal
+the discardCard function in the CardCollection class working by making a copy
+of the card and using that copy as the parameters of the remove operation.
+This causes the first "matching" card in the set to be removed.
+
+
+3) Suppose we have a CardCollection cc consisting of 2, 52-card decks (Card.newDeck()*2)
+and we produce a test like the one below...
+...that succeeds on testCardRemoveFromMiddle(1) but fails on
+testCardRemoveFromMiddle(2) - what does this say about partition b6?
+
+This tells us that b6 needed to be divided into more partitions to consider
+more conditions than it did and shows some drawbacks of partition testing.
