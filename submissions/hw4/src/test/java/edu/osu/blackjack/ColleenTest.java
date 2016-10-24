@@ -53,7 +53,6 @@ public class ColleenTest {
  }
 
 
-
  /********************************
  ********************************
  ********************************
@@ -69,7 +68,6 @@ public class ColleenTest {
   List < Card > deck = dealer.getHand();
   assertEquals(deck.get(0).face.getValue(), 2);
  }
-
 
  @Test
  public void dealerAcceptCardTest() {
@@ -100,12 +98,12 @@ equals operator for this to work*/
   @Test
   public void dealerShuffleDeckTest(){
     Dealer dealer = new Dealer();
-    List<Card> unshuffledDeck1 = dealer.getHand();
-    List<Card> unshuffledDeck2 = dealer.getHand();
-    assertEquals(unshuffledDeck2, unshuffledDeck1);
+    List<Card> dealerUnShuffledDeck = dealer.getHand();
+    List<Card> plainDeck = Card.newDeck();
+    assertEquals(dealerUnShuffledDeck, plainDeck);
     dealer.shuffleDeck();
     List<Card> shuffledDeck = dealer.getHand();
-    assertNotEquals(unshuffledDeck1, shuffledDeck);
+    assertNotEquals(shuffledDeck, plainDeck);
   }
 
  @Test
@@ -154,6 +152,8 @@ equals operator for this to work*/
    assertEquals(currentBet, 20);
 
   }
+
+
   /********************************
   ********************************
   ********************************
@@ -219,7 +219,7 @@ equals operator for this to work*/
 
 /*This throws an error, as it is supposed to*/
  @Test
- public void playerMoneyToBetInsufficientFundsTest() {
+ public void playeMoveMoneyToInsuranceInsufficientFundsTest() {
   Player player = new Player();
   player.moveMoneyToInsurance(1500);
   int insurance = player.makeInsuranceBet();

@@ -3,6 +3,7 @@ package edu.osu.blackjack;
 
 
 public class SimpleBlackjack {
+	/*
 	public enum ActionType {HIT , DOUBLE, STAND};
 	private int numPlayers;
 
@@ -59,4 +60,5 @@ public class SimpleBlackjack {
 			dealer.compareHandAndSettle(p);
 		}
 	}
+	*/
 }
