@@ -95,17 +95,18 @@ public class ColleenTest {
   assertFalse(dealer.isInsuranceAvailable());
  }
 
- //  @Test
- //  public void dealerShuffleDeckTest(){
- //    Dealer dealer = new Dealer();
- //    List<Card> unshuffledDeck1 = dealer.getHand();
- //    List<Card> unshuffledDeck2 = dealer.getHand();
- //    assertEquals(unshuffledDeck2, unshuffledDeck1);
- //    dealer.shuffleDeck();
- //    List<Card> shuffledDeck = dealer.getHand();
- //    assertNotEquals(unshuffledDeck1, shuffledDeck);
- //
- //  }
+/*I should probably override the
+equals operator for this to work*/
+  @Test
+  public void dealerShuffleDeckTest(){
+    Dealer dealer = new Dealer();
+    List<Card> unshuffledDeck1 = dealer.getHand();
+    List<Card> unshuffledDeck2 = dealer.getHand();
+    assertEquals(unshuffledDeck2, unshuffledDeck1);
+    dealer.shuffleDeck();
+    List<Card> shuffledDeck = dealer.getHand();
+    assertNotEquals(unshuffledDeck1, shuffledDeck);
+  }
 
  @Test
  public void dealerSetDeckTest() {
@@ -160,15 +161,13 @@ public class ColleenTest {
    ********************************
    ********************************
    *********************************/
-
- //
- // @Test
- // public void playerAcceptMoneyTest() {
- //  Player player = new Player();
- //  player.acceptMoney(5000);
- //  // assertEquals(player.currentWallet, 6000);
- // }
-
+ @Test
+ public void playerAcceptMoneyTest() {
+  Player player = new Player();
+  player.acceptMoney(5000);
+  int wallet = player.currentWallet;
+  assertEquals(wallet, 6000);
+ }
 
 
  @Test
