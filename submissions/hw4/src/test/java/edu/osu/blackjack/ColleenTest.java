@@ -208,37 +208,41 @@ public class ColleenTest {
   assertEquals(currentBet, 20);
  }
 
- @Test
- public void playerMoveMoneyToInsuranceInsufficientFundsTest() {
-  Player player = new Player();
-  player.moveMoneyToInsurance(1500);
-  assertNotEquals(player.makeInsuranceBet(), 1500);
- }
-
-
 
 
  @Test
  public void playerMoveMoneyToInsuranceWithEnoughFundsTest() {
   Player player = new Player();
   player.moveMoneyToInsurance(500);
-  assertEquals(player.makeInsuranceBet(), 500);
+  int insurance = player.makeInsuranceBet();
+  assertEquals(insurance, 500);
  }
 
- // @Test
- // public void playerMoneyToBetWithEnoughFundsTest() {
- //  Player player = new Player();
- //  player.moveMoneyToBet(500);
- //  //  assertEquals(player.makeInsuranceBet(), 500);
- // }
+/*This throws an error, as it is supposed to*/
+ @Test
+ public void playerMoneyToBetInsufficientFundsTest() {
+  Player player = new Player();
+  player.moveMoneyToInsurance(1500);
+  int insurance = player.makeInsuranceBet();
+  assertEquals(insurance, 0);
+ }
 
+ @Test
+ public void playerMoneyToBetWithEnoughFundsTest() {
+  Player player = new Player();
+  player.moveMoneyToBet(500);
+  int bet = player.getCurrentBet();
+  assertEquals(bet, 500);
+ }
 
- // @Test
- // public void playerMoneyToBetWithBadFundsTest() {
- //  Player player = new Player();
- //  player.moveMoneyToBet(1500);
- //  //  assertEquals(player.makeInsuranceBet(), 500);
- // }
+ //This throws an error, like it's meant to
+ @Test
+ public void playerMoneyToBetWithBadFundsTest() {
+  Player player = new Player();
+  player.moveMoneyToBet(1500);
+  int bet = player.getCurrentBet();
+  assertEquals(bet, 500);
+ }
 
  @Test
  public void playerToStringTest() {
