@@ -154,6 +154,27 @@ public class ColleenTest {
 
   }
 
+  // @Test
+  // public void dealerCompareAndSettlePlayerBustTest() {
+  //
+  //   Dealer dealer = new Dealer();
+  //   dealer.acceptCard(new Card(Card.Face.TEN, Card.Suit.HEART));
+  //   dealer.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+  //
+  //
+  //   Player player = new Player();
+  //   player.acceptCard(new Card(Card.Face.NINE, Card.Suit.HEART));
+  //   player.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+  //   player.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+  //
+  //   player.makeBet();
+  //
+  //   dealer.compareHandAndSettle(player);
+  //
+  //   assertNotEquals(player.getCurrentBet();, 20);
+  //
+  //  }
+
 
   /********************************
   ********************************

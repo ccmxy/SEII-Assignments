@@ -1,0 +1,76 @@
+
+1) True or False: A good test suite has good coverage
+  True.
+
+2) True or False: A suite with good coverage implies a good test suite
+  False.
+
+3) True or False: 100% Line/Statement Coverage implies 100% Branch Coverage
+
+  False. I'll demonstrate with an example:
+
+     if (variable == NULL)
+              variable = 0
+
+  If you only tested this when variable == NULL, you would cover
+  100% of these two lines, but you would never test for the condition
+  of the if statement being false.
+
+4) True or False: 100% Branch Coverage implies 100% Line/Statement Coverage
+
+   True. A statement is covered if it is executed. For 100% branch
+   coverage, each possible branch from each decision point is executed.
+   Logically, if every possible jump from one line of code to another
+   happens during testing (100% branch coverage), then every statement
+   must be executed.
+
+
+5) True or False: 100% Branch Coverage implies 100% Path Coverage. Full path coverage implies that every possible execution path in the tested code is followed by at least one test. Justify your answer
+    False.
+
+    Branch coverage only means that every possible jump is executed at least once,
+    but it doesn't mean that every possible path through the program is taken.
+
+    I'll show an example from here:
+     http://pjcj.net/testing_and_code_coverage/paper.html
+    $h = 0;
+      if ($x)
+      {
+          $h = { a => 1 };
+      }
+      if ($y)
+      {
+          print $h->{a};
+      }
+     "100% branch coverage can be achieved by setting ($x, $y) to
+     (1, 1) and then to (0, 0). But if we have (0, 1) then things go bang."
+
+     Full path coverage wouldn't JUST cover both if-statements being true
+     or both being false; it would also test for one being true and then the
+     other being false, and for one being false and then the other being true.
+
+6) Describe in a paragraph or less how your intuitions for what consitutes a quality test suite aligned (or did not) with your initial coverage results in problem 3
+
+  My tests got good line-coverage percentages initially, though I didn't realize it for a long
+  time because I had forgotten to comment out the code in SimpleBlackJack.java.
+  When I ran cobertura, one thing that I realized was that I had forgotten to
+  cover a lot of branches relating to the compareHandAndSettle() dealer class
+  function that I was able to do. Another thing that makes this hard to say though
+  is that I was not allowed to fix the bugs, so I couldn't really approach this with
+  my normal way of thinking. I approached this with the idea that I wanted to
+  get a certain amount of coverage, even though a lot of that would be
+  restricted by some errors that are pretty cohesive with a lot of parts
+  of the program.
+
+
+7) Compare in a paragraph or less a test suite written only using input domain partitioning to a test suite written to optimize coverage metrics.
+
+  Each has their benefits and drawbacks. The advantage having disjoint tests is that
+  it reduces the total number of test that need to be done. As noted in the lectures,
+  the range of possible input values is huge, so by coming up with categories
+  to test we can uncover errors. However, this relies on the inputs used really being
+  generalizable to all other inputs in that partition. That isn't always the case,
+  which is how bugs can hide. A coverage-focused suite doesn't have to rely on the
+  developer's judgement about how much code is covered. However, sometimes 100%
+  path coverage is impossible, and the testing suite might be a lot longer than
+  a partition-based one.
