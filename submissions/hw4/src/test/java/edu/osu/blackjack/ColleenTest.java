@@ -77,6 +77,14 @@ public class ColleenTest {
   assertEquals(deck.get(52).face.getValue(), 7);
  }
 
+ /************* Dealer Class Insurance Tests *************/
+
+ @Test
+ public void dealerIsInsuranceAvailableFalseTest() {
+  Dealer dealer = new Dealer();
+  assertFalse(dealer.isInsuranceAvailable());
+ }
+
 /*THIS FAILS, BUT WOULD PASS IF THE CODE DIDNT HAVE BUGS*/
  @Test
  public void dealerIsInsuranceAvailableTrueTest() {
@@ -86,15 +94,8 @@ public class ColleenTest {
   dealer.acceptCard(card);
   assertTrue(dealer.isInsuranceAvailable());
  }
+ /*************                           *************/
 
- @Test
- public void dealerIsInsuranceAvailableFalseTest() {
-  Dealer dealer = new Dealer();
-  assertFalse(dealer.isInsuranceAvailable());
- }
-
-/*I should probably override the
-equals operator for this to work*/
   @Test
   public void dealerShuffleDeckTest(){
     Dealer dealer = new Dealer();
@@ -161,31 +162,28 @@ equals operator for this to work*/
    ********************************
    ********************************
    *********************************/
- @Test
- public void playerAcceptMoneyTest() {
-  Player player = new Player();
-  player.acceptMoney(5000);
-  int wallet = player.currentWallet;
-  assertEquals(wallet, 6000);
- }
 
+
+ /************* Player Class Insurance Tests *************/
 
  @Test
- public void playerMakeBetTest() {
+ public void playerMoveMoneyToInsuranceWithEnoughFundsTest() {
   Player player = new Player();
-  int bet = player.makeBet();
-  assertEquals(bet, 10);
+  player.moveMoneyToInsurance(500);
+  int insurance = player.makeInsuranceBet();
+  assertEquals(insurance, 500);
  }
 
+ /*This throws an error, as it is supposed to*/
+  @Test
+  public void playeMoveMoneyToInsuranceInsufficientFundsTest() {
+   Player player = new Player();
+   player.moveMoneyToInsurance(1500);
+   int insurance = player.makeInsuranceBet();
+   assertEquals(insurance, 0);
+  }
 
- @Test
- public void playerAcceptCardTest() {
-  Player player = new Player();
-  player.acceptCard(new Card(Card.Face.QUEEN, Card.Suit.HEART));
-  List < Card > hand = player.getHand();
-  assertEquals(hand.get(0).toString(), "QUEENHEART");
- }
-
+ /************* Player Class Bet Tests *************/
 
  @Test
  public void playerDoubltDownBetTest() {
@@ -197,6 +195,12 @@ equals operator for this to work*/
   assertEquals(doubledBet2, 40);
  }
 
+  @Test
+  public void playerMakeBetTest() {
+   Player player = new Player();
+   int bet = player.makeBet();
+   assertEquals(bet, 10);
+  }
 
  @Test
  public void playeGetCurrentBetTest() {
@@ -205,25 +209,6 @@ equals operator for this to work*/
   player.doubleDownBet();
   int currentBet = player.getCurrentBet();
   assertEquals(currentBet, 20);
- }
-
-
-
- @Test
- public void playerMoveMoneyToInsuranceWithEnoughFundsTest() {
-  Player player = new Player();
-  player.moveMoneyToInsurance(500);
-  int insurance = player.makeInsuranceBet();
-  assertEquals(insurance, 500);
- }
-
-/*This throws an error, as it is supposed to*/
- @Test
- public void playeMoveMoneyToInsuranceInsufficientFundsTest() {
-  Player player = new Player();
-  player.moveMoneyToInsurance(1500);
-  int insurance = player.makeInsuranceBet();
-  assertEquals(insurance, 0);
  }
 
  @Test
@@ -242,6 +227,8 @@ equals operator for this to work*/
   int bet = player.getCurrentBet();
   assertEquals(bet, 500);
  }
+
+ /************* Other Player class tests *************/
 
  @Test
  public void playerToStringTest() {
@@ -268,6 +255,23 @@ equals operator for this to work*/
   Player player = new Player();
   PlayerAction.ActionType action = player.getAction();
   assertEquals(action, PlayerAction.ActionType.STAND);
+ }
+
+ @Test
+ public void playerAcceptMoneyTest() {
+  Player player = new Player();
+  player.acceptMoney(5000);
+  int wallet = player.currentWallet;
+  assertEquals(wallet, 6000);
+ }
+
+
+ @Test
+ public void playerAcceptCardTest() {
+  Player player = new Player();
+  player.acceptCard(new Card(Card.Face.QUEEN, Card.Suit.HEART));
+  List < Card > hand = player.getHand();
+  assertEquals(hand.get(0).toString(), "QUEENHEART");
  }
 
 
