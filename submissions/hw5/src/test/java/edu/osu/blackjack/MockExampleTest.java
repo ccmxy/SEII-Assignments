@@ -19,13 +19,13 @@ public class MockExampleTest {
                             .thenReturn(PlayerAction.ActionType.HIT)
                             .thenReturn(PlayerAction.ActionType.HIT)
                             .thenReturn(PlayerAction.ActionType.HIT)
-                            .thenReturn(PlayerAction.ActionType.HIT)	
-	                    .thenReturn(PlayerAction.ActionType.HIT)	   
-	                    .thenReturn(PlayerAction.ActionType.STAND);	                          
+                            .thenReturn(PlayerAction.ActionType.HIT)
+	                    .thenReturn(PlayerAction.ActionType.HIT)
+	                    .thenReturn(PlayerAction.ActionType.STAND);
 	SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
 	j.playRound();
 	verify(dt, times(9)).dealCard(pa);
     }
-	
-	
+
+
 }
