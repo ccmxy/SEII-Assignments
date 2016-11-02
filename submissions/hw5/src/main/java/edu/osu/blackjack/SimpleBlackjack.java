@@ -3,7 +3,7 @@ package edu.osu.blackjack;
 
 
 public class SimpleBlackjack {
-	
+
 	public enum ActionType {HIT , DOUBLE, STAND};
 	private int numPlayers;
 
@@ -24,10 +24,14 @@ public class SimpleBlackjack {
 			p.makeBet();
 		}
 
+		dealer.dealCard(dealer);
+		dealer.dealCard(dealer);
+
 		for(PlayerAction p: players ){
-			dealer.dealCard(dealer);
+			dealer.dealCard(p);
 			dealer.dealCard(p);
 		}
+
 
 		if(dealer.isInsuranceAvailable()){
 			for(PlayerAction p: players ){

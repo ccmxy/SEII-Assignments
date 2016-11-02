@@ -1,0 +1,51 @@
+Issue: Player not recognized as having insurance.
+
+Description:
+
+In blackjack, "Insurance is a side bet that the dealer has blackjack and is
+ treated independently of the main wager. It pays 2:1 (meaning that the player
+ receives two dollars for every dollar bet) and is available when the dealer's
+ exposed card is an ace. "
+
+ However, a test showed even when the dealer does have a visible ace,
+  Dealer.isInsuranceAvaliable() returns false.
+
+Test snippet:
+
+    @Test
+    public void dealerIsInsuranceAvailableTrueTest() {
+     Dealer dealer = new Dealer();
+     //Create an ace
+     Card card = new Card(Card.Face.ACE, Card.Suit.HEART);
+     //Make it visible (face up)
+     card.setVisible(true);
+     //Give it to the dealer
+     dealer.acceptCard(card);
+     assertTrue(dealer.isInsuranceAvailable());
+    }
+
+
+Test results with original code:
+
+failure type="java.lang.AssertionError">
+java.lang.AssertionError at edu.osu.blackjack.ColleenTest.dealerIsInsuranceAvailableTrueTest(ColleenTest.java:97)
+</failure>
+
+This is because the isInsuranceAvailable() function looks at the cards in
+dealerHand, which is never filled. A quick glance at "acceptCard()" shows that
+it was actually adding to the deck instead of to the dealer's hand:
+
+      @Override
+      public void acceptCard(Card c) {
+        deck.add(c);
+      }
+
+To counter this, we simply change the acceptCard override (in Dealer.java)
+to this:
+
+  @Override
+  public void acceptCard(Card c) {
+    dealerHand.add(c);
+  }
+
+  

@@ -6,5 +6,3 @@ public interface CommonAction {
 	void acceptCard(Card c);
 	List<Card> getHand();
 }
-
-

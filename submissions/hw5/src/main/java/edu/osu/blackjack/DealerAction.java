@@ -6,5 +6,5 @@ public interface DealerAction extends CommonAction {
 	public void dealCard(CommonAction dealer);
 	public boolean isInsuranceAvailable();
 	void compareHandAndSettle(PlayerAction p);
-	
+
 }

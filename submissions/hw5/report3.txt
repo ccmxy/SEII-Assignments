@@ -1,0 +1,18 @@
+@Override
+public void compareHandAndSettle(PlayerAction p) {
+  int dealerScore = handScore(dealerHand);
+  int currentBet = p.getCurrentBet();
+
+  if(dealerScore<handScore(p.getHand())){
+    p.acceptMoney(currentBet*2);
+  }
+  else if(isInsuranceAvailable() && dealerScore == 21){
+    p.acceptMoney(currentBet*3);
+  }
+
+  deck.addAll(p.getHand());
+  p.nextHand();
+
+  deck.addAll(dealerHand);
+  dealerHand.clear();
+}

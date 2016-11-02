@@ -1,0 +1,58 @@
+Issue: Player and the dealer are not dealt 2 cards when the game begins.
+
+Description:
+
+The rules of blackjack clearly state that at the beginning of the game,
+each player and the dealer are dealt two cards. Instead, the player is dealt one
+card, and the dealer is dealt a card per player. 
+
+
+Test snippet:
+
+    @Test
+    public void PlayerIsInitiallyDealtTwoCardsTest(){
+
+      DealerAction dt = mock(DealerAction.class);
+      PlayerAction pa = mock(PlayerAction.class);
+
+      when(pa.getAction()).thenReturn(PlayerAction.ActionType.STAND);
+
+      SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
+      j.playRound();
+
+      verify(dt, times(2)).dealCard(pa);
+    }
+
+
+This should pass because according to the rules of blackjack, each player is initially dealt 2 cards.
+If a player is dealt 2 cards, then they must be dealt to that player by the dealer twice.
+Instead, test results indicate that the dealer only dealt to the player once.
+
+Test results with original code:
+
+  org.mockito.exceptions.verification.TooLittleActualInvocations: dealerAction.dealCard( Mock for PlayerAction, hashCode: 503195940 );
+  Wanted 2 times: -> at edu.osu.blackjack.SimpleBlackjackTest.PlayerIsInitiallyDealtTwoCardsTest(SimpleBlackjackTest.java:105)
+  But was 1 time: -> at edu.osu.blackjack.SimpleBlackjack.playRound(SimpleBlackjack.java:29) at edu.osu.blackjack.SimpleBlackjackTest.PlayerIsInitiallyDealtTwoCardsTest(SimpleBlackjackTest.java:105)
+
+Original code snippet:
+
+    for(PlayerAction p: players ){
+      dealer.dealCard(dealer);
+      dealer.dealCard(p);
+    }
+
+We can immediately see 2 glaring things wrong with this code. One is that the
+dealer is dealt one card per PLAYER, when the number of players
+should have no impact on the number of cards the dealer is dealt. The other is
+that the player is only dealt one card.
+
+Code snippets added to SimpleBlackjack.java that removed the bug:
+
+  dealer.dealCard(dealer);
+  dealer.dealCard(dealer);
+
+
+  for(PlayerAction p: players ){
+    dealer.dealCard(p);
+    dealer.dealCard(p);
+  }

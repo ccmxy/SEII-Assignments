@@ -13,7 +13,7 @@ public  class Player implements PlayerAction{
 	public Integer currentInsurance;
 
 	public List<Card> currentHand = new ArrayList<Card>();
-	
+
 	@Override
 	public void acceptCard(Card c) {
 		currentHand.add(c);
@@ -48,8 +48,8 @@ public  class Player implements PlayerAction{
 	public void acceptMoney(int i) {
 		this.currentWallet += i;
 	}
-	
-	
+
+
 	public void moveMoneyToInsurance(int amount) {
 		if (currentWallet >= amount) {
 			currentWallet = currentWallet - amount;
@@ -71,11 +71,11 @@ public  class Player implements PlayerAction{
 		currentInsurance = null;
 	}
 
-	@Override	
+	@Override
 	public String toString() {
 		return "Player: " + this.currentHand + "w " +this.currentWallet + "b " + currentBet + "i " + currentInsurance;
 	}
 
 
-	
+
 }

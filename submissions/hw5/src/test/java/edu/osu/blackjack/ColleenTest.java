@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.Random;
 import java.util.*;
+import static org.mockito.Mockito.*;
+
 
 public class ColleenTest {
 
@@ -85,15 +87,18 @@ public class ColleenTest {
   assertFalse(dealer.isInsuranceAvailable());
  }
 
-/*THIS FAILS, BUT WOULD PASS IF THE CODE DIDNT HAVE BUGS*/
  @Test
  public void dealerIsInsuranceAvailableTrueTest() {
   Dealer dealer = new Dealer();
+  //Create an ace
   Card card = new Card(Card.Face.ACE, Card.Suit.HEART);
+  //Make it visible (face up)
   card.setVisible(true);
+  //Give it to the dealer
   dealer.acceptCard(card);
   assertTrue(dealer.isInsuranceAvailable());
  }
+
  /*************                           *************/
 
   @Test
@@ -154,26 +159,29 @@ public class ColleenTest {
 
   }
 
-  // @Test
-  // public void dealerCompareAndSettlePlayerBustTest() {
-  //
-  //   Dealer dealer = new Dealer();
-  //   dealer.acceptCard(new Card(Card.Face.TEN, Card.Suit.HEART));
-  //   dealer.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
-  //
-  //
-  //   Player player = new Player();
-  //   player.acceptCard(new Card(Card.Face.NINE, Card.Suit.HEART));
-  //   player.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
-  //   player.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
-  //
-  //   player.makeBet();
-  //
-  //   dealer.compareHandAndSettle(player);
-  //
-  //   assertNotEquals(player.getCurrentBet();, 20);
-  //
-  //  }
+  @Test
+  public void dealerCompareAndSettlePlayerBustTest() {
+
+    Dealer dealer = new Dealer();
+    dealer.acceptCard(new Card(Card.Face.TEN, Card.Suit.HEART));
+    dealer.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+
+
+    Player player = new Player();
+    player.acceptCard(new Card(Card.Face.NINE, Card.Suit.HEART));
+    player.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+    player.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+
+    player.makeBet();
+
+
+    dealer.compareHandAndSettle(player);
+    int currentBet = player.getCurrentBet();
+
+
+    assertNotEquals(currentBet, 20);
+
+   }
 
 
   /********************************

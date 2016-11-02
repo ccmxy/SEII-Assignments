@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.osu.blackjack.ColleenTest" time="0.016" tests="25" errors="3" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.osu.blackjack.ColleenTest" time="0.014" tests="26" errors="6" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib"/>
     <property name="java.vm.version" value="25.65-b01"/>
     <property name="gopherProxySet" value="false"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/colleenminor/desktop/courses/SoftwareEngineeringII/assignments-ccmxy/submissions/hw5"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/colleenminor/desktop/Courses/SoftwareEngineeringII/assignments-ccmxy/submissions/hw5"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -61,28 +61,41 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="dealerAcceptCardTest" classname="edu.osu.blackjack.ColleenTest" time="0.003"/>
+  <testcase name="dealerAcceptCardTest" classname="edu.osu.blackjack.ColleenTest" time="0.007">
+    <error message="Index: 52, Size: 52" type="java.lang.IndexOutOfBoundsException">java.lang.IndexOutOfBoundsException: Index: 52, Size: 52
+	at edu.osu.blackjack.ColleenTest.dealerAcceptCardTest(ColleenTest.java:79)
+</error>
+  </testcase>
   <testcase name="cardIsVisibleFalseTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
+  <testcase name="dealerCompareAndSettlePlayerBustTest" classname="edu.osu.blackjack.ColleenTest" time="0.001">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at edu.osu.blackjack.ColleenTest.dealerCompareAndSettlePlayerBustTest(ColleenTest.java:179)
+</error>
+  </testcase>
   <testcase name="playerGetActionTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerAcceptMoneyTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="dealerConstructorTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerMoveMoneyToInsuranceWithEnoughFundsTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="cardGetValueTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="dealerIsInsuranceAvailableFalseTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="playerMoneyToBetWithEnoughFundsTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
+  <testcase name="playerMoneyToBetWithEnoughFundsTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerNextHandTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerAcceptCardTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playeGetCurrentBetTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="dealerCompareAndSettlePlayerWinTest" classname="edu.osu.blackjack.ColleenTest" time="0.004">
+  <testcase name="dealerCompareAndSettlePlayerWinTest" classname="edu.osu.blackjack.ColleenTest" time="0">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at edu.osu.blackjack.ColleenTest.dealerCompareAndSettlePlayerWinTest(ColleenTest.java:151)
+	at edu.osu.blackjack.ColleenTest.dealerCompareAndSettlePlayerWinTest(ColleenTest.java:156)
 </error>
   </testcase>
-  <testcase name="cardToStringTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="dealerDealCardTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="playeMoveMoneyToInsuranceInsufficientFundsTest" classname="edu.osu.blackjack.ColleenTest" time="0">
+  <testcase name="cardToStringTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
+  <testcase name="dealerDealCardTest" classname="edu.osu.blackjack.ColleenTest" time="0">
+    <error message="Index: 53, Size: 52" type="java.lang.IndexOutOfBoundsException">java.lang.IndexOutOfBoundsException: Index: 53, Size: 52
+	at edu.osu.blackjack.ColleenTest.dealerDealCardTest(ColleenTest.java:132)
+</error>
+  </testcase>
+  <testcase name="playeMoveMoneyToInsuranceInsufficientFundsTest" classname="edu.osu.blackjack.ColleenTest" time="0.001">
     <error type="java.lang.RuntimeException">java.lang.RuntimeException
-	at edu.osu.blackjack.ColleenTest.playeMoveMoneyToInsuranceInsufficientFundsTest(ColleenTest.java:202)
+	at edu.osu.blackjack.ColleenTest.playeMoveMoneyToInsuranceInsufficientFundsTest(ColleenTest.java:210)
 </error>
   </testcase>
   <testcase name="dealerSetDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
@@ -90,14 +103,10 @@
   <testcase name="playerDoubltDownBetTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerMakeBetTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="dealerShuffleDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
-  <testcase name="dealerIsInsuranceAvailableTrueTest" classname="edu.osu.blackjack.ColleenTest" time="0.001">
-    <failure type="java.lang.AssertionError">java.lang.AssertionError
-	at edu.osu.blackjack.ColleenTest.dealerIsInsuranceAvailableTrueTest(ColleenTest.java:95)
-</failure>
-  </testcase>
-  <testcase name="playerMoneyToBetWithBadFundsTest" classname="edu.osu.blackjack.ColleenTest" time="0">
+  <testcase name="dealerIsInsuranceAvailableTrueTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
+  <testcase name="playerMoneyToBetWithBadFundsTest" classname="edu.osu.blackjack.ColleenTest" time="0.001">
     <error type="java.lang.RuntimeException">java.lang.RuntimeException
-	at edu.osu.blackjack.ColleenTest.playerMoneyToBetWithBadFundsTest(ColleenTest.java:247)
+	at edu.osu.blackjack.ColleenTest.playerMoneyToBetWithBadFundsTest(ColleenTest.java:255)
 </error>
   </testcase>
   <testcase name="cardIsVisibleTrueTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>

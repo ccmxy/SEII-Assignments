@@ -5,7 +5,7 @@ import java.util.*;
 public  class Dealer implements DealerAction{
 
 
-	
+
 	private List<Card> dealerHand = new ArrayList<Card>();
 	private List<Card> deck;
 
@@ -15,7 +15,8 @@ public  class Dealer implements DealerAction{
 
 	@Override
 	public void acceptCard(Card c) {
-		deck.add(c);
+		// deck.add(c);
+		dealerHand.add(c);
 	}
 
 	@Override
@@ -33,34 +34,34 @@ public  class Dealer implements DealerAction{
 	public void compareHandAndSettle(PlayerAction p) {
 		int dealerScore = handScore(dealerHand);
 		int currentBet = p.getCurrentBet();
-		
+
 		if(dealerScore<handScore(p.getHand())){
 			p.acceptMoney(currentBet*2);
 		}
 		else if(isInsuranceAvailable() && dealerScore == 21){
 			p.acceptMoney(currentBet*3);
 		}
-		
+
 		deck.addAll(p.getHand());
 		p.nextHand();
-	
+
 		deck.addAll(dealerHand);
 		dealerHand.clear();
 	}
 
 
-	
+
 	public void reset(){
-		
+
 		this.dealerHand = new ArrayList<Card>();
 		this.deck = new ArrayList<Card>();
 		this.setDeck(Card.newDeck());
 	}
-	
+
 	public void setDeck(List<Card> c){
 		this.deck = c;
 	}
-	
+
 
 	public boolean isInsuranceAvailable() {
 		for(Card c: dealerHand){
@@ -89,7 +90,7 @@ public  class Dealer implements DealerAction{
 		}
 		return false;
 	}*/
-	
+
 	public static void dumpDeck(List<Card> c){
 		System.out.print("Deck:");
 		for(Card z : c) System.out.print(c.toString() + ";");
@@ -109,11 +110,3 @@ public  class Dealer implements DealerAction{
 	}
 
 }
-
-
-
-	
-
-	
-
-
