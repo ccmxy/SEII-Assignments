@@ -29,18 +29,24 @@ public  class Dealer implements DealerAction{
 		Card c = this.dealCardFromDeck(true);
 		toPlayer.acceptCard(c);
 	}
-
+	
 	@Override
 	public void compareHandAndSettle(PlayerAction p) {
 		int dealerScore = handScore(dealerHand);
 		int currentBet = p.getCurrentBet();
 
 		if(dealerScore<handScore(p.getHand())){
+			p.acceptMoney(currentBet);
+		}
+
+		/**** NEW ****/
+		else if(dealerScore>handScore(p.getHand())){
+			p.loseMoney(currentBet);
+		}
+			else if(isInsuranceAvailable() && dealerScore == 21){
 			p.acceptMoney(currentBet*2);
 		}
-		else if(isInsuranceAvailable() && dealerScore == 21){
-			p.acceptMoney(currentBet*3);
-		}
+
 
 		deck.addAll(p.getHand());
 		p.nextHand();
@@ -48,6 +54,7 @@ public  class Dealer implements DealerAction{
 		deck.addAll(dealerHand);
 		dealerHand.clear();
 	}
+
 
 
 

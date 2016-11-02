@@ -16,3 +16,68 @@ public void compareHandAndSettle(PlayerAction p) {
   deck.addAll(dealerHand);
   dealerHand.clear();
 }
+
+This error has 3 causes:
+
+1) In compareHandAndSettle() (in Dealer.java) there is no option
+for if the dealer has a higher handscore than the player.
+
+2) Even if there was, the playerAction interface doesn't have any way to
+ subtract money from the player's wallet.
+
+And 3) As we can see, at the end p.nextHand() is called in this function.
+Taking a look at nextHand(), in Player.java...
+
+    @Override
+    public void nextHand() {
+      currentBet = null;
+      currentWallet = null;
+      currentInsurance = null;
+    }
+
+Setting the player's wallet to null after every round
+really doesn't make any sense. That creates a situation where
+the player will always end up broke. So, we will comment out the line
+currentWallet = null.
+
+Then we will add a new method to the Player class as well as the PlayerAction
+interface for loseMoney().
+
+Here it is in Player.java:
+
+      @Override
+      public void loseMoney(int i){
+        currentWallet -= i;
+      }
+
+And finally we will edit the class compareHandAndSettle to account for
+when the player loses. (I noticed while doing this that the reason currentBet
+is doubled and tripled when the player wins/has insurance is because this was
+designed such that the player's money was to be taken from their wallet as soon
+as they placed their bet, so I also adjusted those numbers).
+
+
+    	@Override
+    	public void compareHandAndSettle(PlayerAction p) {
+    		int dealerScore = handScore(dealerHand);
+    		int currentBet = p.getCurrentBet();
+
+    		if(dealerScore<handScore(p.getHand())){
+    			p.acceptMoney(currentBet);
+    		}
+
+        /**** NEW ****/
+    		else if(dealerScore>handScore(p.getHand())){
+    			p.loseMoney(currentBet);
+    		}
+    			else if(isInsuranceAvailable() && dealerScore == 21){
+    			p.acceptMoney(currentBet*2);
+    		}
+
+
+    		deck.addAll(p.getHand());
+    		p.nextHand();
+
+    		deck.addAll(dealerHand);
+    		dealerHand.clear();
+    	}

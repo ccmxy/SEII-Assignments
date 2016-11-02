@@ -11,6 +11,7 @@ public interface PlayerAction  extends CommonAction{
 	public ActionType getAction();
 	public int getCurrentBet();
 	public void acceptMoney(int i);
+	public void loseMoney(int i);
 	public void nextHand();
 
 

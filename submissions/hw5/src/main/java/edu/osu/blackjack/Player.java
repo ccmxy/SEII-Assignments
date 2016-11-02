@@ -67,7 +67,7 @@ public  class Player implements PlayerAction{
 	@Override
 	public void nextHand() {
 		currentBet = null;
-		currentWallet = null;
+	//	currentWallet = null;
 		currentInsurance = null;
 	}
 
@@ -75,6 +75,12 @@ public  class Player implements PlayerAction{
 	public String toString() {
 		return "Player: " + this.currentHand + "w " +this.currentWallet + "b " + currentBet + "i " + currentInsurance;
 	}
+
+	@Override
+	public void loseMoney(int i){
+		currentWallet -= i;
+	}
+
 
 
 

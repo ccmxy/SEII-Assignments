@@ -153,9 +153,9 @@ public class ColleenTest {
 
    dealer.compareHandAndSettle(player);
    //The player should now have a bet of 20
-   int currentBet = player.getCurrentBet();
+   int currentWallet = player.currentWallet;
 
-   assertEquals(currentBet, 20);
+   assertEquals(currentWallet, 1010);
 
   }
 
@@ -176,10 +176,10 @@ public class ColleenTest {
 
 
     dealer.compareHandAndSettle(player);
-    int currentBet = player.getCurrentBet();
+    int currentWallet = player.currentWallet;
 
 
-    assertNotEquals(currentBet, 20);
+    assertEquals(currentWallet, 990);
 
    }
 
