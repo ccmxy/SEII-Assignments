@@ -4,10 +4,10 @@ Description:
 
 The rules of blackjack clearly state that at the beginning of the game,
 each player and the dealer are dealt two cards. Instead, the player is dealt one
-card, and the dealer is dealt a card per player. 
+card, and the dealer is dealt a card per player.
 
 
-Test snippet:
+Test snippets:
 
     @Test
     public void PlayerIsInitiallyDealtTwoCardsTest(){

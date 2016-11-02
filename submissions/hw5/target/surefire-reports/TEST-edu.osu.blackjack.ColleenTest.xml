@@ -63,8 +63,8 @@
   </properties>
   <testcase name="cardIsVisibleFalseTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
   <testcase name="dealerCompareAndSettlePlayerBustTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="playerGetActionTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="playerAcceptMoneyTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
+  <testcase name="playerGetActionTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
+  <testcase name="playerAcceptMoneyTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="dealerConstructorTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerMoveMoneyToInsuranceWithEnoughFundsTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="cardGetValueTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
@@ -78,8 +78,8 @@
   <testcase name="cardNewDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerDoubltDownBetTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerMakeBetTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="dealerShuffleDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="dealerIsInsuranceAvailableTrueTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
+  <testcase name="dealerShuffleDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
+  <testcase name="dealerIsInsuranceAvailableTrueTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="cardIsVisibleTrueTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerToStringTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
 </testsuite>

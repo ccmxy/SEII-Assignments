@@ -4,8 +4,9 @@ and the bet that they have placed.
 
 Description:
 
- How blackjack works is that if(1) the player wins, they win the amount of money
- they bet, if(2) the dealer wins, the dealer wins the player's bet money, and if
+ How blackjack works (according to the variation that I have played it)
+ is that if(1) the player wins, they win the amount of money they bet,
+ if(2) the dealer wins, the dealer wins the player's bet money, and if
  (3) the player has insurance and the dealer's score is 21, the player wins
  double their bet.
 
@@ -99,7 +100,7 @@ Here it is in Player.java:
       }
 
 And finally we will edit the class compareHandAndSettle to account for
-when the player loses. (I noticed while doing this that the reason currentBet
+when the player loses. (I think maybe that the reason currentBet
 is doubled and tripled when the player wins/has insurance is because this was
 designed such that the player's money was to be taken from their wallet as soon
 as they placed their bet, so I also adjusted those numbers).
