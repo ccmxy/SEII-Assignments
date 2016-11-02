@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.Random;
 import static org.mockito.Mockito.*;
+import org.mockito.InOrder;
 import java.util.*;
 
 
@@ -63,110 +64,33 @@ verify(dt, times(9)).dealCard(pa);
     verify(dt, times(2)).dealCard(dt);
   }
 
-  @Test
-  public void blackJackTest(){
 
-    DealerAction dt = mock(DealerAction.class);
+  @Test
+  public void dealerTipsEveryPlayer(){
+
+    DealerAction da = mock(DealerAction.class);
     PlayerAction pa = mock(PlayerAction.class);
-    PlayerAction pb = mock(PlayerAction.class);
+    PlayerAction pa2 = mock(PlayerAction.class);
+    PlayerAction pa3 = mock(PlayerAction.class);
+    CommonAction ca = mock(CommonAction.class);
+
 
     when(pa.getAction()).thenReturn(PlayerAction.ActionType.STAND);
+    when(pa2.getAction()).thenReturn(PlayerAction.ActionType.STAND);
+    when(pa3.getAction()).thenReturn(PlayerAction.ActionType.STAND);
 
-    SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
+  //  when(da.dealCard(ca)).thenReturn()
+
+    // InOrder inOrder = inOrder(pa,pa2,deal);  // have tried moving this above and below blackjack instantiation
+
+    SimpleBlackjack j = new SimpleBlackjack(da,new PlayerAction[]{pa,pa2,pa3});
     j.playRound();
 
-    verify(dt, times(2)).dealCard(pa);
+    InOrder inOrder = inOrder(pa,pa2,da);  //  **** ERROR ON THIS LINE ***
+    // inOrder.verify(pa, times(1)).makeBet();
 
+    // InOrder.verify(pa2, times(1)).makeBet();\\acceptCard
   }
 
-//   @Test
-//   public void playerHasInsuranceTest(){
-//
-//     DealerAction dt = mock(DealerAction.class);
-//     PlayerAction pa = mock(PlayerAction.class);
-//     Dealer dealer = mock(Dealer.class);
-//     Player player = mock(Player.class);
-//
-//     //PLayer gets 21
-//     List < Card > playerHand =  Arrays.asList(new Card(Card.Face.TEN, Card.Suit.HEART),
-//     new Card(Card.Face.NINE, Card.Suit.HEART),new Card(Card.Face.TWO, Card.Suit.HEART));
-//
-//     //Dealer gets 2
-//     List < Card > dealerHand = Arrays.asList(new Card(Card.Face.TWO, Card.Suit.HEART),
-//     new Card(Card.Face.TWO, Card.Suit.HEART));
-//
-//     //Return the 21 point deck for player's hand and 2 point deck fo the dealer
-//     when(player.getHand()).thenReturn(playerHand);
-//     when(dealer.getHand()).thenReturn(dealerHand);
-//
-//     SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
-//     j.playRound();
-//
-//
-//     verify(pa, times(1)).acceptMoney(40);
-//
-// }
-//
-// @Test
-// public void playerHasInsuranceTest(){
-//
-//   DealerAction dt = mock(DealerAction.class);
-//   PlayerAction pa = mock(PlayerAction.class);
-//   Dealer dealer = mock(Dealer.class);
-//   Player player = mock(Player.class);
-//
-//   //PLayer gets 21
-//   List < Card > playerHand =  Arrays.asList(new Card(Card.Face.TEN, Card.Suit.HEART),
-//   new Card(Card.Face.NINE, Card.Suit.HEART),new Card(Card.Face.TWO, Card.Suit.HEART));
-//
-//   //Dealer gets 2
-//   List < Card > dealerHand = Arrays.asList(new Card(Card.Face.TWO, Card.Suit.HEART),
-//   new Card(Card.Face.TWO, Card.Suit.HEART));
-//
-//   //Return the 21 point deck for player's hand and 2 point deck fo the dealer
-//   when(player.getHand()).thenReturn(playerHand);
-//   when(dealer.getHand()).thenReturn(dealerHand);
-//
-//   SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
-//   j.playRound();
-//
-//
-//   verify(pa, times(1)).acceptMoney(40);
-//
-// }
-
-
-
-// /*Bug found!!*/
-// @Test
-// public void upToThreePlayersTest(){
-//
-//   DealerAction dt = mock(DealerAction.class);
-//   PlayerAction pa = mock(PlayerAction.class);
-//   PlayerAction pb = mock(PlayerAction.class);
-//   PlayerAction pc = mock(PlayerAction.class);
-//
-//   when(pa.getAction()).thenReturn(PlayerAction.ActionType.STAND);
-//   SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa,pb,pc});
-//   j.playRound();
-//   verify(dt, times(2)).dealCard(pa);
-//
-// }
-  //   @Test
-  //   public void testBasicFunctionality(){
-	// // Does it run without errors for a simple case?
-	// Dealer dealer = new Dealer();
-	// Player[] players  = new Player[1];
-	// players[0] = new Player(){
-	// 	@Override
-	// 	public int makeBet(){
-	// 	    this.currentBet = 1 + ((int)Math.random()*5);
-	// 	    return currentBet;
-	// 	}
-	//     };
-	// SimpleBlackjack j = new SimpleBlackjack(dealer,players);
-	// j.playRound();
-  //
-  //   }
 
 }
