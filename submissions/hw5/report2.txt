@@ -1,4 +1,4 @@
-Issue: Player not recognized as having insurance.
+Issue: Insurance not recognized as avaliable.
 
 Description:
 
@@ -47,5 +47,3 @@ to this:
   public void acceptCard(Card c) {
     dealerHand.add(c);
   }
-
-  

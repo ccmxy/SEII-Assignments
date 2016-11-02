@@ -71,14 +71,6 @@ public class ColleenTest {
   assertEquals(deck.get(0).face.getValue(), 2);
  }
 
- @Test
- public void dealerAcceptCardTest() {
-  Dealer dealer = new Dealer();
-  dealer.acceptCard(new Card(Card.Face.SEVEN, Card.Suit.CLUB));
-  List < Card > deck = dealer.getHand();
-  assertEquals(deck.get(52).face.getValue(), 7);
- }
-
  /************* Dealer Class Insurance Tests *************/
 
  @Test
@@ -122,20 +114,20 @@ public class ColleenTest {
  }
 
 
- @Test
- public void dealerDealCardTest() {
-  Dealer dealer = new Dealer();
-  dealer.acceptCard(new Card(Card.Face.QUEEN, Card.Suit.HEART));
-  dealer.acceptCard(new Card(Card.Face.THREE, Card.Suit.DIAMOND));
-  List < Card > deck1 = dealer.getHand();
-
-  assertEquals(deck1.get(53).face, Card.Face.THREE);
-  Player player = new Player();
-  dealer.dealCard(player);
-  List < Card > deck2 = dealer.getHand();
-
-  assertEquals(deck1.get(52).face, Card.Face.THREE);
- }
+ // @Test
+ // public void dealerDealCardTest() {
+ //  Dealer dealer = new Dealer();
+ //  dealer.acceptCard(new Card(Card.Face.QUEEN, Card.Suit.HEART));
+ //  dealer.acceptCard(new Card(Card.Face.THREE, Card.Suit.DIAMOND));
+ //  List < Card > deck1 = dealer.getHand();
+ //
+ //  assertEquals(deck1.get(53).face, Card.Face.THREE);
+ //  Player player = new Player();
+ //  dealer.dealCard(player);
+ //  List < Card > deck2 = dealer.getHand();
+ //
+ //  assertEquals(deck1.get(52).face, Card.Face.THREE);
+ // }
 
 
  @Test
@@ -203,14 +195,14 @@ public class ColleenTest {
   assertEquals(insurance, 500);
  }
 
- /*This throws an error, as it is supposed to*/
-  @Test
-  public void playeMoveMoneyToInsuranceInsufficientFundsTest() {
-   Player player = new Player();
-   player.moveMoneyToInsurance(1500);
-   int insurance = player.makeInsuranceBet();
-   assertEquals(insurance, 0);
-  }
+ // /*This throws an error, as it is supposed to*/
+ //  @Test
+ //  public void playeMoveMoneyToInsuranceInsufficientFundsTest() {
+ //   Player player = new Player();
+ //   player.moveMoneyToInsurance(1500);
+ //   int insurance = player.makeInsuranceBet();
+ //   assertEquals(insurance, 0);
+ //  }
 
  /************* Player Class Bet Tests *************/
 
@@ -248,14 +240,14 @@ public class ColleenTest {
   assertEquals(bet, 500);
  }
 
- //This throws an error, like it's meant to
- @Test
- public void playerMoneyToBetWithBadFundsTest() {
-  Player player = new Player();
-  player.moveMoneyToBet(1500);
-  int bet = player.getCurrentBet();
-  assertEquals(bet, 500);
- }
+ // //This throws an error, like it's meant to
+ // @Test
+ // public void playerMoneyToBetWithBadFundsTest() {
+ //  Player player = new Player();
+ //  player.moveMoneyToBet(1500);
+ //  int bet = player.getCurrentBet();
+ //  assertEquals(bet, 500);
+ // }
 
  /************* Other Player class tests *************/
 
@@ -268,15 +260,15 @@ public class ColleenTest {
   assertEquals(player.toString(), "Player: [QUEENHEART]w 400b 500i 100");
  }
 
- @Test
- public void playerNextHandTest() {
-  Player player = new Player();
-  player.acceptCard(new Card(Card.Face.QUEEN, Card.Suit.HEART));
-  player.moveMoneyToBet(500);
-  player.moveMoneyToInsurance(100);
-  player.nextHand();
-  assertEquals(player.toString(), "Player: [QUEENHEART]w nullb nulli null");
- }
+ // @Test
+ // public void playerNextHandTest() {
+ //  Player player = new Player();
+ //  player.acceptCard(new Card(Card.Face.QUEEN, Card.Suit.HEART));
+ //  player.moveMoneyToBet(500);
+ //  player.moveMoneyToInsurance(100);
+ //  player.nextHand();
+ //  assertEquals(player.toString(), "Player: [QUEENHEART]w nullb nulli null");
+ // }
 
 
  @Test

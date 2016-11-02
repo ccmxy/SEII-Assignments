@@ -29,7 +29,7 @@ public  class Dealer implements DealerAction{
 		Card c = this.dealCardFromDeck(true);
 		toPlayer.acceptCard(c);
 	}
-	
+
 	@Override
 	public void compareHandAndSettle(PlayerAction p) {
 		int dealerScore = handScore(dealerHand);

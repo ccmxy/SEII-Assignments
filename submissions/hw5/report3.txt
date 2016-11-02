@@ -1,3 +1,51 @@
+Issue: compareAndSettle causes user's wallet to be set to null, rather than
+causing them to gain or lose money depending on the outcome of the cards
+and the bet that they have placed.
+
+Description:
+
+ How blackjack works is that if(1) the player wins, they win the amount of money
+ they bet, if(2) the dealer wins, the dealer wins the player's bet money, and if
+ (3) the player has insurance and the dealer's score is 21, the player wins
+ double their bet.
+
+ Test snippet:
+
+     @Test
+     public void dealerCompareAndSettlePlayerBustTest() {
+
+       Dealer dealer = new Dealer();
+       //Give the dealer a score of 19
+       dealer.acceptCard(new Card(Card.Face.TEN, Card.Suit.HEART));
+       dealer.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+
+
+       Player player = new Player();
+
+       //Give the player a score of 27.
+       //Because their score is above 21, this is called a bust
+       //and the player should lose their bet.
+
+       player.acceptCard(new Card(Card.Face.NINE, Card.Suit.HEART));
+       player.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+       player.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+
+       //Standard bet of 10 is placed
+       player.makeBet();
+
+       dealer.compareHandAndSettle(player);
+       int currentWallet = player.currentWallet;
+
+       //The player's wallet has gone from the default of
+       // 1000 to 990
+       assertEquals(currentWallet, 990);
+
+      }
+
+  Instead of being successful, this throws an error of NullPointer exception.
+
+Let's look at the compareHandAndSettle function:
+
 @Override
 public void compareHandAndSettle(PlayerAction p) {
   int dealerScore = handScore(dealerHand);
