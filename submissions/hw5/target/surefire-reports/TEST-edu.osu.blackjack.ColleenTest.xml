@@ -62,7 +62,7 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase name="cardIsVisibleFalseTest" classname="edu.osu.blackjack.ColleenTest" time="0.002"/>
-  <testcase name="dealerCompareAndSettlePlayerBustTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
+  <testcase name="dealerCompareAndSettlePlayerBustTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerGetActionTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerAcceptMoneyTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="dealerConstructorTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
@@ -74,11 +74,11 @@
   <testcase name="playeGetCurrentBetTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="dealerCompareAndSettlePlayerWinTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="cardToStringTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="dealerSetDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="cardNewDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
+  <testcase name="dealerSetDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
+  <testcase name="cardNewDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerDoubltDownBetTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerMakeBetTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
-  <testcase name="dealerShuffleDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0.001"/>
+  <testcase name="dealerShuffleDeckTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="dealerIsInsuranceAvailableTrueTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="cardIsVisibleTrueTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>
   <testcase name="playerToStringTest" classname="edu.osu.blackjack.ColleenTest" time="0"/>

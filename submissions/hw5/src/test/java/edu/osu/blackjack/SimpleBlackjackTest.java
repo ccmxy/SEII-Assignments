@@ -29,9 +29,55 @@ when(pa.getAction()).thenReturn(PlayerAction.ActionType.HIT)
 SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
 j.playRound();
 //Sign up a bug: Deal card was not called 9 times.
-verify(dt, times(8)).dealCard(pa);
+verify(dt, times(9)).dealCard(pa);
   }
 
+
+  @Test
+  public void PlayerIsInitiallyDealtTwoCardsTest(){
+
+    DealerAction dt = mock(DealerAction.class);
+    PlayerAction pa = mock(PlayerAction.class);
+
+    when(pa.getAction()).thenReturn(PlayerAction.ActionType.STAND);
+
+    SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
+    j.playRound();
+
+    verify(dt, times(2)).dealCard(pa);
+
+  }
+
+
+  @Test
+  public void DealerIsInitallyDealtTwoCardsTest(){
+
+    DealerAction dt = mock(DealerAction.class);
+    PlayerAction pa = mock(PlayerAction.class);
+
+    when(pa.getAction()).thenReturn(PlayerAction.ActionType.STAND);
+
+    SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
+    j.playRound();
+
+    verify(dt, times(2)).dealCard(dt);
+  }
+
+  @Test
+  public void blackJackTest(){
+
+    DealerAction dt = mock(DealerAction.class);
+    PlayerAction pa = mock(PlayerAction.class);
+    PlayerAction pb = mock(PlayerAction.class);
+
+    when(pa.getAction()).thenReturn(PlayerAction.ActionType.STAND);
+
+    SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
+    j.playRound();
+
+    verify(dt, times(2)).dealCard(pa);
+
+  }
 
 //   @Test
 //   public void playerHasInsuranceTest(){
@@ -90,36 +136,6 @@ verify(dt, times(8)).dealCard(pa);
 // }
 
 
-
-@Test
-public void PlayerIsInitiallyDealtTwoCardsTest(){
-
-  DealerAction dt = mock(DealerAction.class);
-  PlayerAction pa = mock(PlayerAction.class);
-
-  when(pa.getAction()).thenReturn(PlayerAction.ActionType.STAND);
-
-  SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
-  j.playRound();
-
-  verify(dt, times(2)).dealCard(pa);
-
-}
-
-
-@Test
-public void DealerIsInitallyDealtTwoCardsTest(){
-
-  DealerAction dt = mock(DealerAction.class);
-  PlayerAction pa = mock(PlayerAction.class);
-
-  when(pa.getAction()).thenReturn(PlayerAction.ActionType.STAND);
-
-  SimpleBlackjack j = new SimpleBlackjack(dt,new PlayerAction[]{pa});
-  j.playRound();
-
-  verify(dt, times(2)).dealCard(dt);
-}
 
 // /*Bug found!!*/
 // @Test
