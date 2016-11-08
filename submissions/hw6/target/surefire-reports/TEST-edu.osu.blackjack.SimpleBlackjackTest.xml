@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="edu.osu.blackjack.SimpleBlackjackTest" time="0.104" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="edu.osu.blackjack.SimpleBlackjackTest" time="0.111" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib"/>
@@ -62,7 +62,7 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="edu.osu.blackjack.SimpleBlackjackTest" name="DealerIsInitallyDealtTwoCardsTest" time="0.096"/>
+  <testcase classname="edu.osu.blackjack.SimpleBlackjackTest" name="DealerIsInitallyDealtTwoCardsTest" time="0.103"/>
   <testcase classname="edu.osu.blackjack.SimpleBlackjackTest" name="testMock" time="0.001"/>
   <testcase classname="edu.osu.blackjack.SimpleBlackjackTest" name="dealerOffersBetToAllPlayers" time="0.002"/>
   <testcase classname="edu.osu.blackjack.SimpleBlackjackTest" name="testDoubleDownFunctionality" time="0.004"/>

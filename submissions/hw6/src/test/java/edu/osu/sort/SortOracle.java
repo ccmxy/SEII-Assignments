@@ -18,12 +18,6 @@ public class SortOracle  {
 
     Collections.sort(original);
     return sorted.toString().contentEquals(original.toString())?true:false;
-    // if(Array.equals(original, sorted)){
-    //   return true;
-    // }
-    // else{
-    //   return false;
-    // }
 
-}
+  }
 }
