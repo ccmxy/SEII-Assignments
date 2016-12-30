@@ -1,0 +1,367 @@
+
+1) Correct the bug in lastZero within Warmup.java
+
+      public static int lastZero(int[] arr) {
+        /*
+         * Returns the index of the last occurance of 0 or -1 if no such element
+         * exists
+         */
+
+         //Check for null value
+         if(arr == null){
+           return -1;
+         }
+
+      //Changed 0 to -1 to account for when index is 0
+        for (int i = arr.length - 1; i > -1; i--) {
+          if (arr[i] == 0) {
+            return i;
+          }
+        }
+        return -1;
+      }
+
+
+2) Is it possible to organize each of your test case functions into
+disjoint partitions? If so, describe your partitioning scheme, making
+note of which test functions correspond to which partition. If not,
+come up with a new disjoint partitioning scheme, describe it and modify
+your WarmupTest.java tests to reflect your new scheme.
+
+Yes... partitions for each are shown/described below.
+
+/************************
+**************************
+**************************
+
+    lastZero
+
+**************************
+**************************
+**************************/
+
+B_1: Null
+
+    @
+    Test
+    public void testLastZero_nullValue() {
+     int result = WarmUp.lastZero(null);
+     assertEquals(result, -1);
+
+    }
+
+B_2: Empty array
+
+    @
+    Test
+    public void testLastZero_emptyArray() {
+     int result = WarmUp.lastZero(new int[] {
+
+     });
+     assertEquals(result, -1);
+
+    }
+
+B_3: No zeroes
+
+    @
+    Test
+    public void testLastZero_noZeros() {
+
+     int result2 = WarmUp.lastZero(new int[] {
+      1,
+      3,
+      4,
+      3,
+      5
+     });
+     assertEquals(result2, -1);
+    }
+
+B_4: Exactly 1 zero
+
+    @
+    Test
+    public void testLastZero_oneZero() {
+
+     int result3 = WarmUp.lastZero(new int[] {
+      1,
+      0,
+      5
+     });
+     assertNotEquals(result3, 2);
+
+    }
+
+B_5: Zero at position 0
+
+    @
+    Test
+    public void testLastZero_zeroAtPositionZero() {
+
+     int result4 = WarmUp.lastZero(new int[] {
+      0,
+      3,
+      4,
+      3,
+      5
+     });
+     assertEquals(result4, 0);
+    }
+
+/************************
+**************************
+**************************
+
+    last
+
+**************************
+**************************
+**************************/
+
+
+B_1: Null
+
+@
+Test
+public void testLast_nullValue() {
+ int result = WarmUp.last(null, 0);
+ assertEquals(result, -1);
+}
+
+B_2: Value to find in array once
+
+    @
+    Test
+    public void testLast_valToFindInArrayOnce() {
+     int result = WarmUp.last(new int[] {
+      1,
+      0,
+      2,
+      5
+     }, 0);
+     assertEquals(result, 1);
+    }
+
+B_3: Value to find in array testLast_valToFindInArrayTwice
+    @
+    Test
+    public void testLast_valToFindInArrayTwice() {
+     int result = WarmUp.last(new int[] {
+      1,
+      0,
+      4,
+      0,
+      5
+     }, 0);
+     assertEquals(result, 3);
+    }
+
+  B_4: Value to find not in array
+
+      @
+      Test
+      public void testLast_toFindNotInArray() {
+       int result = WarmUp.last(new int[] {
+        1,
+        3,
+        4,
+        3,
+        5
+       }, 7);
+       assertEquals(result, -1);
+      }
+
+
+/************************
+**************************
+**************************
+
+    positive
+
+**************************
+**************************
+**************************/
+
+B_1: Null
+
+@
+Test
+public void testPositive_nullValue() {
+ int result = WarmUp.positive(null);
+ assertEquals(result, 0);
+}
+
+B_2: Empty array
+
+@
+Test
+public void testPositive_emptyArray() {
+ int result = WarmUp.positive(new int[0]);
+ assertEquals(result, 0);
+}
+
+B_3: Both positive and negative values
+@
+Test
+public void testPositive_mixedData() {
+ int result = WarmUp.positive(new int[] {
+  -1, -2, 4, 5
+ });
+ assertEquals(result, 2);
+}
+
+B_4: Array with mixed data and 0
+(which is not positive or negative)
+
+@
+Test
+public void testPositive_mixedDataWithZero() {
+ int result = WarmUp.positive(new int[] {
+  -1, -2, 0, 4, 5
+ });
+ assertEquals(result, 2);
+}
+
+
+B_5: Array with only negatives
+
+@
+Test
+public void testPositive_onlyNegatives() {
+ int result = WarmUp.positive(new int[] {
+  -1, -2, -3, -4, -5
+ });
+ assertEquals(result, 0);
+}
+
+B_6: Array with only positives
+
+@
+Test
+public void testPositive_onlyPositives() {
+ int result = WarmUp.positive(new int[] {
+  1,
+  2,
+  3,
+  4,
+  5
+ });
+ assertEquals(result, 5);
+}
+
+
+
+ /************************
+ **************************
+ **************************
+
+     oddOrPos
+
+ **************************
+ **************************
+ **************************/
+
+ B_1: null
+
+ @
+ Test
+ public void testOddOrPos_nullValue() {
+  int result = WarmUp.oddOrPos(null);
+  assertEquals(result, 0);
+ }
+
+ B_2: Empty array
+
+ //Test on empty int array
+ @
+ Test
+ public void testOddOrPos_emptyIntArray() {
+  //Test on blank int array
+  int[] myIntArray = new int[3];
+  int result = WarmUp.oddOrPos(myIntArray);
+  assertEquals(result, 0);
+ }
+
+
+
+ B_3: Mixed data (Array with both positive
+ and negative even and odd)
+
+ @
+ Test
+ public void testOddOrPos_mixedData() {
+  int result = WarmUp.oddOrPos(new int[] {
+   -3, -2, 3, 4
+  });
+  assertEquals(result, 3);
+ }
+
+
+B_4: Array with both even and odd positives
+@
+Test
+public void testOddOrPos_mixedPositiveNumbers() {
+ int result = WarmUp.oddOrPos(new int[] {
+  1,
+  2,
+  3,
+  4
+ });
+ assertEquals(result, 4);
+}
+
+B_5: Array with only odd positives
+@
+Test
+public void testOddOrPos_oddPositiveNumbers() {
+ int result = WarmUp.oddOrPos(new int[] {
+  1,
+  3,
+ });
+ assertEquals(result, 2);
+}
+
+B_6: Array with only even positives
+@
+Test
+public void testOddOrPos_evenPositiveNumbers() {
+ int result = WarmUp.oddOrPos(new int[] {
+  2,
+  4,
+ });
+ assertEquals(result, 2);
+}
+
+
+B_7: Array with only odd negatives
+@
+Test
+public void testOddOrPos_oddNegativeNumbers() {
+ int result = WarmUp.oddOrPos(new int[] {
+  -1, -3, -5
+ });
+ assertEquals(result, 3);
+ //Result retrieved was 0 instead of 3
+ //Bug discovered: A negative odd integer
+ // % 2 will be -1, not 1, because in java %
+ // includes negatives.
+}
+
+
+B_8: Array with only even negatives
+@
+Test
+public void testOddOrPos_evenNegativeNumbers() {
+ int result = WarmUp.oddOrPos(new int[] {
+  -2, -4, -6
+ });
+ assertEquals(result, 0);
+}
+
+3) Describe the advantage of having input disjoint test cases
+
+This reduces the total number of test that need to be done.
+As noted in the lectures, the range of possible input values
+is huge, so by coming up with categories to test we can uncover
+errors.

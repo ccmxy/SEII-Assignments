@@ -315,6 +315,29 @@ public class WarmupTest {
   assertEquals(result, 4);
  }
 
+//Test on array of odd positive numbers
+ @
+ Test
+ public void testOddOrPos_oddPositiveNumbers() {
+  int result = WarmUp.oddOrPos(new int[] {
+   1,
+   3,
+  });
+  assertEquals(result, 2);
+ }
+
+ //Test on array of even positive numbers
+
+ @
+ Test
+ public void testOddOrPos_evenPositiveNumbers() {
+  int result = WarmUp.oddOrPos(new int[] {
+   2,
+   4,
+  });
+  assertEquals(result, 2);
+ }
+
 
  //Test on odd negative numbers: FAILS!
  @
@@ -324,10 +347,19 @@ public class WarmupTest {
    -1, -3, -5
   });
   assertEquals(result, 3);
-  //Result retreived was 0 instead of 3
+  //Result retrieved was 0 instead of 3
   //Bug discovered: A negative odd integer
   // % 2 will be -1, not 1, because in java %
   // includes negatives.
+ }
+
+ @
+ Test
+ public void testOddOrPos_evenNegativeNumbers() {
+  int result = WarmUp.oddOrPos(new int[] {
+   -2, -4, -6
+  });
+  assertEquals(result, 0);
  }
 
 

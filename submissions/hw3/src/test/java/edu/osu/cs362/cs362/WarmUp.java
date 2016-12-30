@@ -22,7 +22,13 @@ public class WarmUp {
 		 * exists
 		 */
 
-		for (int i = arr.length - 1; i > 0; i--) {
+		 //Check for null value
+		 if(arr == null){
+			 return -1;
+		 }
+
+//Changed 0 to -1 to account for when index is 0
+		for (int i = arr.length - 1; i > -1; i--) {
 			if (arr[i] == 0) {
 				return i;
 			}
