@@ -1,0 +1,132 @@
+Issue: compareAndSettle causes user's wallet to be set to null, rather than
+causing them to gain or lose money depending on the outcome of the cards
+and the bet that they have placed.
+
+Description:
+
+ How blackjack works (according to the variation that I have played it)
+ is that if(1) the player wins, they win the amount of money they bet,
+ if(2) the dealer wins, the dealer wins the player's bet money, and if
+ (3) the player has insurance and the dealer's score is 21, the player wins
+ double their bet.
+
+ Test snippet:
+
+     @Test
+     public void dealerCompareAndSettlePlayerBustTest() {
+
+       Dealer dealer = new Dealer();
+       //Give the dealer a score of 19
+       dealer.acceptCard(new Card(Card.Face.TEN, Card.Suit.HEART));
+       dealer.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+
+
+       Player player = new Player();
+
+       //Give the player a score of 27.
+       //Because their score is above 21, this is called a bust
+       //and the player should lose their bet.
+
+       player.acceptCard(new Card(Card.Face.NINE, Card.Suit.HEART));
+       player.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+       player.acceptCard(new Card(Card.Face.NINE, Card.Suit.DIAMOND));
+
+       //Standard bet of 10 is placed
+       player.makeBet();
+
+       dealer.compareHandAndSettle(player);
+       int currentWallet = player.currentWallet;
+
+       //The player's wallet has gone from the default of
+       // 1000 to 990
+       assertEquals(currentWallet, 990);
+
+      }
+
+  Instead of being successful, this throws an error of NullPointer exception.
+
+Let's look at the compareHandAndSettle function:
+
+@Override
+public void compareHandAndSettle(PlayerAction p) {
+  int dealerScore = handScore(dealerHand);
+  int currentBet = p.getCurrentBet();
+
+  if(dealerScore<handScore(p.getHand())){
+    p.acceptMoney(currentBet*2);
+  }
+  else if(isInsuranceAvailable() && dealerScore == 21){
+    p.acceptMoney(currentBet*3);
+  }
+
+  deck.addAll(p.getHand());
+  p.nextHand();
+
+  deck.addAll(dealerHand);
+  dealerHand.clear();
+}
+
+This error has 3 causes:
+
+1) In compareHandAndSettle() (in Dealer.java) there is no option
+for if the dealer has a higher handscore than the player.
+
+2) Even if there was, the playerAction interface doesn't have any way to
+ subtract money from the player's wallet.
+
+And 3) As we can see, at the end p.nextHand() is called in this function.
+Taking a look at nextHand(), in Player.java...
+
+    @Override
+    public void nextHand() {
+      currentBet = null;
+      currentWallet = null;
+      currentInsurance = null;
+    }
+
+Setting the player's wallet to null after every round
+really doesn't make any sense. That creates a situation where
+the player will always end up broke. So, we will comment out the line
+currentWallet = null.
+
+Then we will add a new method to the Player class as well as the PlayerAction
+interface for loseMoney().
+
+Here it is in Player.java:
+
+      @Override
+      public void loseMoney(int i){
+        currentWallet -= i;
+      }
+
+And finally we will edit the class compareHandAndSettle to account for
+when the player loses. (I think maybe that the reason currentBet
+is doubled and tripled when the player wins/has insurance is because this was
+designed such that the player's money was to be taken from their wallet as soon
+as they placed their bet, so I also adjusted those numbers).
+
+
+    	@Override
+    	public void compareHandAndSettle(PlayerAction p) {
+    		int dealerScore = handScore(dealerHand);
+    		int currentBet = p.getCurrentBet();
+
+    		if(dealerScore<handScore(p.getHand())){
+    			p.acceptMoney(currentBet);
+    		}
+
+        /**** NEW ****/
+    		else if(dealerScore>handScore(p.getHand())){
+    			p.loseMoney(currentBet);
+    		}
+    			else if(isInsuranceAvailable() && dealerScore == 21){
+    			p.acceptMoney(currentBet*2);
+    		}
+
+
+    		deck.addAll(p.getHand());
+    		p.nextHand();
+
+    		deck.addAll(dealerHand);
+    		dealerHand.clear();
+    	}
